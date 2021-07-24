@@ -1,6 +1,33 @@
 {
   "name": "veact",
-  "version": "0.0.0",
-  "private": false,
-  "license": "MIT"
+  "description": "Vue Composition API for React",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "Surmon",
+    "email": "surmon@foxmail.com",
+    "url": "https://surmon.me"
+  },
+  "scripts": {
+    "dev": "yarn workspace veact dev",
+    "build": "yarn workspace veact build"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "dependencies": {
+    "@vue/reactivity": "^3.2.0-beta.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.14",
+    "@types/react-dom": "^17.0.9",
+    "eslint": "^7.31.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.3.5"
+  }
 }
