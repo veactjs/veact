@@ -211,7 +211,7 @@ import {
   useReactivity, // any object data to reactivity data
   batchedUpdates, // batchedUpdates === ReactDOM.unstable_batchedUpdates
 
-  // @vue/reactivity API
+  // @vue/reactivity APIs
   // ...
 } from 'veact'
 ```

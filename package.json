@@ -8,16 +8,27 @@
     "email": "surmon@foxmail.com",
     "url": "https://surmon.me"
   },
+  "keywords": [
+    "React mutable state lib",
+    "React vue state",
+    "React composition API",
+    "React state library"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "dev": "yarn workspace veact dev",
-    "build": "yarn workspace veact build"
+    "lint": "eslint --ext .ts src/**",
+    "format": "prettier --write --parser typescript \"src/**/*.ts\"",
+    "build": "libundler"
   },
   "peerDependencies": {
     "react": "*",
     "react-dom": "*"
   },
   "dependencies": {
-    "@vue/reactivity": "^3.2.0-beta.2"
+    "@vue/reactivity": "^3.2.0-beta.5"
   },
   "devDependencies": {
     "@types/react": "^17.0.14",
