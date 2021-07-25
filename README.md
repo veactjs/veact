@@ -33,9 +33,10 @@ yarn add veact react react-dom
 **Lifecycle**
 
 ```tsx
+import React from 'react'
 import { onMounted, onBeforeUnmount, onUpdated } from 'veact'
 
-export const component = () => {
+export const Component: React.FC = () => {
   onMounted(() => {
     console.log('component mounted')
   })
@@ -55,9 +56,10 @@ export const component = () => {
 **Base**
 
 ```tsx
+import React from 'react'
 import { useRef } from 'veact'
 
-export const component = () => {
+export const Component: React.FC = () => {
   const count = useRef(0)
   const increment = () => {
     count.value++
@@ -77,11 +79,12 @@ export const component = () => {
 transform any reactivity object to reactivity hood.
 
 ```tsx
+import React from 'react'
 import { ref, useReactivity } from 'veact'
 
 const _count = useRef(0)
 
-export const component = () => {
+export const Component: React.FC = () => {
   const count = useReactivity(() => _count)
   const increment = () => {
     data.value++
@@ -99,9 +102,10 @@ export const component = () => {
 **Watch**
 
 ```tsx
+import React from 'react'
 import { useReactive, useWatch } from 'veact'
 
-export const component = () => {
+export const Component: React.FC = () => {
   const data = useReactive({
     count: 0,
   })
@@ -132,9 +136,10 @@ export const component = () => {
 **Computed**
 
 ```tsx
+import React from 'react'
 import { useReactive, useComputed } from 'veact'
 
-export const component = () => {
+export const Component: React.FC = () => {
   const data = useReactive({
     count: 4,
     year: 3,
@@ -159,9 +164,10 @@ export const component = () => {
 **Enhancer**
 
 ```tsx
+import React from 'react'
 import { useReactive, onMounted, batchedUpdates } from 'veact'
 
-export const component = () => {
+export const Component: React.FC = () => {
   const data = useReactive({
     count: 0,
     list: [],
@@ -212,6 +218,9 @@ import {
   batchedUpdates, // batchedUpdates === ReactDOM.unstable_batchedUpdates
 
   // @vue/reactivity APIs
+  ref,
+  reactive,
+  computed,
   // ...
 } from 'veact'
 ```
@@ -225,9 +234,17 @@ yarn
 # lint
 yarn lint
 
+# test
+yarn test
+
 # build
 yarn build
 ```
+
+## TODO
+
+- [ ] test case
+- [ ] support `useEffect` deps with reactivity prop value
 
 ### Changelog
 
