@@ -1,38 +1,46 @@
 {
   "name": "veact",
-  "description": "Vue Composition API for React",
-  "version": "0.1.0",
-  "license": "MIT",
-  "author": {
-    "name": "Surmon",
-    "email": "surmon@foxmail.com",
-    "url": "https://surmon.me"
-  },
+  "description": "Mutable state enhancer library for @react by @vue/reactivity",
   "keywords": [
     "React mutable state lib",
     "React vue state",
     "React composition API",
     "React state library"
   ],
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Surmon",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/veactjs/veact.git"
+  },
   "files": [
     "dist",
     "src"
   ],
+  "sideEffects": false,
+  "main": "dist/veact.umd.js",
+  "module": "dist/veact.esm.js",
+  "browser": "dist/veact.umd.js",
+  "types": "dist/veact.esm.d.ts",
   "scripts": {
     "lint": "eslint --ext .ts src/**",
     "format": "prettier --write --parser typescript \"src/**/*.ts\"",
     "build": "libundler"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-dom": "*"
+    "react": "^16.8",
+    "react-dom": "^16.8"
   },
   "dependencies": {
     "@vue/reactivity": "^3.2.0-beta.5"
   },
   "devDependencies": {
+    "@surmon-china/libundler": "../../NPM/libundler",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
     "eslint": "^7.31.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",

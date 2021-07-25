@@ -3,6 +3,6 @@
  * @author Surmon <https://github.com/surmon-china>
  */
 
-import { unstable_batchedUpdates } from 'react-dom';
+import { unstable_batchedUpdates } from 'react-dom'
 
-export const batchedUpdates = unstable_batchedUpdates;
+export const batchedUpdates = unstable_batchedUpdates

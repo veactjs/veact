@@ -3,25 +3,24 @@
  * @author Surmon <https://github.com/surmon-china>
  */
 
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
 export function onMounted(callback: () => any) {
   useEffect(() => {
-    callback();
-  }, []);
+    callback()
+  }, [])
 }
 
 export function onBeforeUnmount(callback: () => void) {
   useEffect(() => {
     return () => {
-      callback();
-    };
-  }, []);
+      callback()
+    }
+  }, [])
 }
 
 export function onUpdated(callback: () => void) {
   useEffect(() => {
-    callback();
-  });
+    callback()
+  })
 }
