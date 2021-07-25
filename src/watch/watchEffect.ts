@@ -5,16 +5,16 @@
 
 // DOC: https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watcheffect
 // fork form: https://github.com/vuejs/vue-next/blob/master/packages/runtime-core/src/apiWatch.ts#L73
-import { useState as useReactState } from 'react';
-import { onBeforeUnmount } from '../lifecycle';
-import { callWithErrorHandling, callWithAsyncErrorHandling } from '../logger';
-import { DebuggerOptions, ReactiveEffect, EffectScheduler } from '../reactivity';
-import { WATCH_CLEANUP_ERROR, WATCH_CALLBACK_ERROR } from './patch';
+import { useState as useReactState } from 'react'
+import { onBeforeUnmount } from '../lifecycle'
+import { callWithErrorHandling, callWithAsyncErrorHandling } from '../logger'
+import { DebuggerOptions, ReactiveEffect, EffectScheduler } from '../reactivity'
+import { WATCH_CLEANUP_ERROR, WATCH_CALLBACK_ERROR } from './patch'
 
-export interface WatchEffectOptions extends DebuggerOptions {}
-export type WatchStopHandle = () => void;
-export type InvalidateCallbackRegistrator = (cb: () => void) => void;
-export type WatchEffect = (onInvalidate: InvalidateCallbackRegistrator) => any;
+export type WatchEffectOptions = DebuggerOptions
+export type WatchStopHandle = () => void
+export type InvalidateCallbackRegistrator = (cb: () => void) => void
+export type WatchEffect = (onInvalidate: InvalidateCallbackRegistrator) => any
 
 /**
  * @example
@@ -31,44 +31,44 @@ export function watchEffect(
   effect: WatchEffect,
   options: WatchEffectOptions = {}
 ): WatchStopHandle {
-  let effector: ReactiveEffect<any>;
-  let cleanup: () => void;
+  let effector: ReactiveEffect<any>
+  let cleanup: () => void
   const onInvalidate: InvalidateCallbackRegistrator = (fn: () => void) => {
     cleanup = effector.onStop = () => {
-      callWithErrorHandling(fn, WATCH_CLEANUP_ERROR);
-    };
-  };
+      callWithErrorHandling(fn, WATCH_CLEANUP_ERROR)
+    }
+  }
 
   const scheduler: EffectScheduler = () => {
     if (!effector.active) {
-      return;
+      return
     }
-    effector.run();
-  };
+    effector.run()
+  }
 
   const getter = () => {
     // cleanup before running cb again
-    cleanup?.();
-    return callWithAsyncErrorHandling(effect, WATCH_CALLBACK_ERROR, [onInvalidate]);
-  };
+    cleanup?.()
+    return callWithAsyncErrorHandling(effect, WATCH_CALLBACK_ERROR, [onInvalidate])
+  }
 
   // effector
-  effector = new ReactiveEffect(getter, scheduler);
-  effector.onTrack = options.onTrack;
-  effector.onTrigger = options.onTrigger;
+  effector = new ReactiveEffect(getter, scheduler)
+  effector.onTrack = options.onTrack
+  effector.onTrigger = options.onTrigger
 
   // initial run
-  effector.run();
+  effector.run()
 
   // stop handle
-  return () => effector.stop();
+  return () => effector.stop()
 }
 
 export function useWatchEffect(
   effect: WatchEffect,
   options?: WatchEffectOptions
 ): WatchStopHandle {
-  const [stopHandle] = useReactState(() => watchEffect(effect, options));
-  onBeforeUnmount(() => stopHandle?.());
-  return stopHandle;
+  const [stopHandle] = useReactState(() => watchEffect(effect, options))
+  onBeforeUnmount(() => stopHandle?.())
+  return stopHandle
 }

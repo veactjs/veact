@@ -32,7 +32,7 @@ export {
   triggerRef,
   unref,
   ReactiveEffect,
-} from '@vue/reactivity';
+} from '@vue/reactivity'
 
 export type {
   EffectScheduler,
@@ -50,4 +50,4 @@ export type {
   UnwrapRef,
   WritableComputedOptions,
   WritableComputedRef,
-} from '@vue/reactivity';
+} from '@vue/reactivity'

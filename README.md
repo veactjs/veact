@@ -1,14 +1,14 @@
 # Veact
 
-![veact](https://img.shields.io/badge/MADE%20WITH-VEACT-42a97a?style=for-the-badge&labelColor=35495d)
+[![veact](https://img.shields.io/badge/MADE%20WITH-VEACT-42a97a?style=for-the-badge&labelColor=35495d)](https://github.com/veactjs/veact)
 [![GitHub stars](https://img.shields.io/github/stars/veactjs/veact.svg?style=for-the-badge)](https://github.com/veactjs/veact/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues-raw/veactjs/veact.svg?style=for-the-badge)](https://github.com/veactjs/veact/issues)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/veactjs/veact/Deploy?label=deploy&style=for-the-badge)](https://github.com/veactjs/veact/actions?query=workflow:%22Deploy%22)
 [![GitHub license](https://img.shields.io/github/license/veactjs/veact.svg?style=for-the-badge)](https://github.com/veactjs/veact/blob/master/LICENSE)
 
-> Mutable state enhancer library for [`React`](https://github.com/facebook/react) by [`@vuejs/reactivity`](https://github.com/vuejs/vue-next).
+> Mutable state enhancer library for [`React`](https://github.com/facebook/react) by [`@vue/reactivity`](https://github.com/vuejs/vue-next).
 
-> 适用于 [`React`](https://github.com/facebook/react) 的可变式状态管理库，基于 [`@vuejs/reactivity`](https://github.com/vuejs/vue-next) 进行开发。
+> 适用于 [`React`](https://github.com/facebook/react) 的可变式状态管理库，基于 [`@vue/reactivity`](https://github.com/vuejs/vue-next) 进行开发。
 
 **🔥 Who is using this library**
 
