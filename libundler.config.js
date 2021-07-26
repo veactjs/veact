@@ -8,6 +8,6 @@ module.exports = {
   globals: {
     react: 'React',
     'react-dom': 'ReactDOM',
-    '@vue/reactivity': 'Vue',
+    '@vue/reactivity': 'VueReactivity',
   },
 }
