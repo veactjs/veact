@@ -26,16 +26,10 @@
   "scripts": {
     "lint": "eslint --ext .ts src/**",
     "format": "prettier --write --parser typescript \"src/**/*.ts\"",
-    "test": "TODO",
+    "test": "jest",
     "build": "libundler",
-    "rebirth": "npm run lint && npm run build",
+    "rebirth": "npm run lint && npm run test && npm run build",
     "release": ". ./scripts/release.sh"
-  },
-  "standard-version": {
-    "skip": {
-      "changelog": true,
-      "commit": true
-    }
   },
   "peerDependencies": {
     "react": "^16.8",
@@ -45,7 +39,10 @@
     "@vue/reactivity": "^3.2.0-beta.5"
   },
   "devDependencies": {
-    "@surmon-china/libundler": "^1.0.1",
+    "@surmon-china/libundler": "^1.0.2",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/react-hooks": "^7.0.1",
+    "@types/jest": "^26.0.24",
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
@@ -53,9 +50,11 @@
     "eslint": "^7.31.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^27.0.6",
     "prettier": "^2.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "ts-jest": "^27.0.4",
     "typescript": "^4.3.5"
   }
 }

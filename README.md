@@ -243,7 +243,6 @@ yarn build
 
 ## TODO
 
-- [ ] test case
 - [ ] support `useEffect` deps with reactivity prop value
 
 ### Changelog
