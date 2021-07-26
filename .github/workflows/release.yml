@@ -1,6 +1,6 @@
 # https://github.com/actions/create-release
 
-name: Create Release
+name: Release
 
 on:
   push:
