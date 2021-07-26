@@ -4,7 +4,6 @@ module.exports = {
   outFileName: 'veact',
   entry: './src/index.ts',
   outDir: './dist',
-  eslint: false,
   external: ['react', 'react-dom', '@vue/reactivity'],
   globals: {
     react: 'React',
