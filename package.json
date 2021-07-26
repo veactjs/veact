@@ -26,7 +26,16 @@
   "scripts": {
     "lint": "eslint --ext .ts src/**",
     "format": "prettier --write --parser typescript \"src/**/*.ts\"",
-    "build": "libundler"
+    "test": "TODO",
+    "build": "libundler",
+    "rebirth": "npm run lint && npm run build",
+    "release": ". ./scripts/release.sh"
+  },
+  "standard-version": {
+    "skip": {
+      "changelog": true,
+      "commit": true
+    }
   },
   "peerDependencies": {
     "react": "^16.8",
@@ -36,7 +45,7 @@
     "@vue/reactivity": "^3.2.0-beta.5"
   },
   "devDependencies": {
-    "@surmon-china/libundler": "../../NPM/libundler",
+    "@surmon-china/libundler": "^1.0.1",
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
