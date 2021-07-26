@@ -6,9 +6,16 @@
 // DOC: https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watch
 // fork form: https://github.com/vuejs/vue-next/blob/master/packages/runtime-core/src/apiWatch.ts
 import { useState as useReactState } from 'react'
+import {
+  isRef,
+  isReactive,
+  Ref,
+  EffectScheduler,
+  ReactiveEffect,
+} from '@vue/reactivity'
 import { onBeforeUnmount } from '../lifecycle'
 import type { ComputedRef } from '../reactivity'
-import { isRef, isReactive, Ref, EffectScheduler, ReactiveEffect } from '../reactivity'
+
 import { logger, callWithErrorHandling, callWithAsyncErrorHandling } from '../logger'
 import { hasChanged, isArray, isFunction } from '../utils'
 import {

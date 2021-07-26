@@ -6,9 +6,9 @@
 // DOC: https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watcheffect
 // fork form: https://github.com/vuejs/vue-next/blob/master/packages/runtime-core/src/apiWatch.ts#L73
 import { useState as useReactState } from 'react'
+import { DebuggerOptions, ReactiveEffect, EffectScheduler } from '@vue/reactivity'
 import { onBeforeUnmount } from '../lifecycle'
 import { callWithErrorHandling, callWithAsyncErrorHandling } from '../logger'
-import { DebuggerOptions, ReactiveEffect, EffectScheduler } from '../reactivity'
 import { WATCH_CLEANUP_ERROR, WATCH_CALLBACK_ERROR } from './patch'
 
 export type WatchEffectOptions = DebuggerOptions

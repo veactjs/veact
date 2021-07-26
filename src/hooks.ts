@@ -6,6 +6,7 @@
 import { useState as useReactState } from 'react'
 import { useWatch } from './watch'
 import { useForceUpdate } from './utils'
+import type { ToRef } from './reactivity'
 import {
   ref as vRef,
   shallowRef as vShallowRef,
@@ -14,14 +15,13 @@ import {
   computed as vComputed,
   ComputedGetter,
   Ref,
-  ToRef,
   UnwrapRef,
   UnwrapNestedRefs,
   DebuggerOptions,
   ComputedRef,
   WritableComputedOptions,
   WritableComputedRef,
-} from './reactivity'
+} from '@vue/reactivity'
 
 /** ref hook */
 export function useRef<T extends object>(value: T): ToRef<T>

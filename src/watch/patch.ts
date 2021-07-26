@@ -3,7 +3,7 @@
  * @author Surmon <https://github.com/surmon-china>
  */
 
-import { isRef } from '../reactivity'
+import { isRef } from '@vue/reactivity'
 import { isArray, isObject, isSet, isMap, isPlainObject } from '../utils'
 
 // fork form: https://github.com/vuejs/vue-next/blob/master/packages/runtime-core/src/errorHandling.ts
