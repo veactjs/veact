@@ -2,9 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### v0.1.0 (2021-07-27)
+
+- fix types
+
 ### v0.1.0 (2021-07-26)
 
-- lifecycle API.
-- hooks API.
-- watch API.
-- support SSR.
+- lifecycle API
+- hooks API
+- watch API
+- support SSR
