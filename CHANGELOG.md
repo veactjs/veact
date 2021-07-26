@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+### v0.1.2 (2021-07-27)
+
+- fix `peerDependencies` React version
+
 ### v0.1.0 (2021-07-27)
 
 - fix types
