@@ -22,7 +22,6 @@ jobs:
           cache: 'yarn'
           registry-url: https://registry.npmjs.org/
       - run: yarn install
-      - run: yarn test
       - run: yarn rebirth
       - run: npm publish --access=public
         env:
