@@ -7,5 +7,5 @@
     "source.fixAll": true
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["Registrator", "Unmount", "libundler", "surmon", "veact"]
+  "cSpell.words": ["Registrator", "Unmount", "codecov", "libundler", "surmon", "veact"]
 }

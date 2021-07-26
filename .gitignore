@@ -8,3 +8,6 @@ npm-debug.log
 
 # output
 dist
+
+# Test Relative Folders
+coverage
