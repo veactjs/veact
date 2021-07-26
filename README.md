@@ -226,7 +226,7 @@ import {
 } from 'veact'
 ```
 
-## Development
+### Development
 
 ```bash
 # install dependencies
@@ -242,7 +242,7 @@ yarn test
 yarn build
 ```
 
-## TODO
+### TODO
 
 - [ ] support `useEffect` deps with reactivity prop value
 
