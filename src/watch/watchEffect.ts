@@ -13,7 +13,7 @@ import { WATCH_CLEANUP_ERROR, WATCH_CALLBACK_ERROR } from './patch'
 
 export type WatchEffectOptions = DebuggerOptions
 export type WatchStopHandle = () => void
-export type InvalidateCallbackRegistrator = (cb: () => void) => void
+export type InvalidateCallbackRegistrator = (callback: () => void) => void
 export type WatchEffect = (onInvalidate: InvalidateCallbackRegistrator) => any
 
 /**
