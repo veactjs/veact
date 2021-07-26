@@ -4,27 +4,13 @@
  */
 
 import { useReducer } from 'react'
-import { isReactive, isRef, toRaw, unref, Ref } from './reactivity'
 
 export type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any
   ? A
   : never
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const increment = (s: number, a?: void) => s + 1
+export const increment = (s: number) => s + 1
 export const useForceUpdate = () => useReducer(increment, 0)[1]
-export function getPureValue<T>(value: T | Ref<T>): T {
-  if (isRef<T>(value)) {
-    return unref(value)
-  } else if (isReactive(value)) {
-    return toRaw(value)
-  } else {
-    return value
-  }
-}
 
 // compare whether a value has changed, accounting for NaN.
 export const hasChanged = (value: any, oldValue: any): boolean => {
