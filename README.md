@@ -3,6 +3,7 @@
 [![veact](https://img.shields.io/badge/MADE%20WITH-VEACT-42a97a?style=for-the-badge&labelColor=35495d)](https://github.com/veactjs/veact)
 [![GitHub stars](https://img.shields.io/github/stars/veactjs/veact.svg?style=for-the-badge)](https://github.com/veactjs/veact/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues-raw/veactjs/veact.svg?style=for-the-badge)](https://github.com/veactjs/veact/issues)
+[![Codecov](https://img.shields.io/codecov/c/github/veactjs/veact?style=for-the-badge)](https://codecov.io/gh/veactjs/veact)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/veactjs/veact/Test?label=test&style=for-the-badge)](https://github.com/veactjs/veact/actions?query=workflow:%22Test%22)
 [![GitHub license](https://img.shields.io/github/license/veactjs/veact.svg?style=for-the-badge)](https://github.com/veactjs/veact/blob/master/LICENSE)
 
