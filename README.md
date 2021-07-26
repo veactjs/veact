@@ -24,8 +24,11 @@ Already used in production for these project :
 
 ```bash
 npm install veact react react-dom --save
+```
 
-# or
+or
+
+```bash
 yarn add veact react react-dom
 ```
 
