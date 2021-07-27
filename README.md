@@ -80,18 +80,20 @@ export const Component: React.FC = () => {
 
 **Reactivity**
 
-transform any reactivity object to reactivity hood.
+transform any reactivity object to reactivity hook.
 
 ```tsx
 import React from 'react'
 import { ref, useReactivity } from 'veact'
 
-const _count = useRef(0)
+// reactivity ref
+const _count = ref(0)
 
 export const Component: React.FC = () => {
+  // to reactivity hook
   const count = useReactivity(() => _count)
   const increment = () => {
-    data.value++
+    count.value++
   }
 
   return (
