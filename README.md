@@ -7,9 +7,9 @@
 [![NPM Publish Status](https://img.shields.io/github/workflow/status/veactjs/veact/Publish?label=publish&style=for-the-badge)](https://github.com/veactjs/veact/actions?query=workflow:%22Publish%22)
 [![GitHub license](https://img.shields.io/github/license/veactjs/veact.svg?style=for-the-badge)](https://github.com/veactjs/veact/blob/master/LICENSE)
 
-> Mutable state enhancer library for [`React`](https://github.com/facebook/react) by [`@vue/reactivity`](https://github.com/vuejs/vue-next).
+> Mutable state enhancer library for [`React`](https://github.com/facebook/react) by [`@vue/reactivity`](https://github.com/vuejs/vue-next/tree/master/packages/reactivity).
 
-> 适用于 [`React`](https://github.com/facebook/react) 的可变式状态管理库，基于 [`@vue/reactivity`](https://github.com/vuejs/vue-next) 进行开发。
+> 适用于 [`React`](https://github.com/facebook/react) 的可变式状态管理库，基于 [`@vue/reactivity`](https://github.com/vuejs/vue-next/tree/master/packages/reactivity) 进行开发。
 
 **🔥 Who is using this library**
 
