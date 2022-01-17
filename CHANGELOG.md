@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+### v0.1.4 (2022-01-17)
+
+- upgrade reactivity deps
+- upgrade `libundler`
+
 ### v0.1.3 (2021-08-02)
 
 - upgrade reactivity deps

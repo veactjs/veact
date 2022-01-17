@@ -1,10 +1,13 @@
 # Veact
 
 [![veact](https://img.shields.io/badge/WITH-VEACT-42a97a?style=for-the-badge&labelColor=35495d)](https://github.com/veactjs/veact)
+&nbsp;
 [![GitHub stars](https://img.shields.io/github/stars/veactjs/veact.svg?style=for-the-badge)](https://github.com/veactjs/veact/stargazers)
+&nbsp;
 [![npm](https://img.shields.io/npm/v/veact?color=c7343a&label=npm&style=for-the-badge)](https://www.npmjs.com/package/veact)
+&nbsp;
 [![Test Codecov](https://img.shields.io/codecov/c/github/veactjs/veact?style=for-the-badge)](https://codecov.io/gh/veactjs/veact)
-[![NPM Publish Status](https://img.shields.io/github/workflow/status/veactjs/veact/Publish?label=publish&style=for-the-badge)](https://github.com/veactjs/veact/actions?query=workflow:%22Publish%22)
+&nbsp;
 [![GitHub license](https://img.shields.io/github/license/veactjs/veact.svg?style=for-the-badge)](https://github.com/veactjs/veact/blob/master/LICENSE)
 
 > Mutable state enhancer library for [`React`](https://github.com/facebook/react) by [`@vue/reactivity`](https://github.com/vuejs/vue-next/tree/master/packages/reactivity).
