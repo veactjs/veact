@@ -18,7 +18,7 @@
 
 Already used in production for these project :
 
-- **[veact-admin](https://github.com/surmon-china/veact-admin)** Blog admin | 博客管理后台
+- **[veact-admin](https://github.com/surmon-china/veact-admin)** A CMS admin by react & veact
 - ...
 
 ---
@@ -249,10 +249,6 @@ yarn test
 # build
 yarn build
 ```
-
-### TODO
-
-- [ ] support `useEffect` deps with reactivity prop value
 
 ### Changelog
 
