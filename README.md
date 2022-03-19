@@ -8,11 +8,13 @@
 &nbsp;
 [![Test Codecov](https://img.shields.io/codecov/c/github/veactjs/veact?style=for-the-badge)](https://codecov.io/gh/veactjs/veact)
 &nbsp;
-[![GitHub license](https://img.shields.io/github/license/veactjs/veact.svg?style=for-the-badge)](https://github.com/veactjs/veact/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/veactjs/veact.svg?style=for-the-badge)](/LICENSE)
 
-> Mutable state enhancer library for [`React`](https://github.com/facebook/react) by [`@vue/reactivity`](https://github.com/vuejs/vue-next/tree/master/packages/reactivity).
+Mutable state enhancer library for [`React`](https://github.com/facebook/react) by [`@vue/reactivity`](https://github.com/vuejs/vue-next/tree/master/packages/reactivity).
 
-> 适用于 [`React`](https://github.com/facebook/react) 的可变式状态管理库，基于 [`@vue/reactivity`](https://github.com/vuejs/vue-next/tree/master/packages/reactivity) 进行开发。
+适用于 [`React`](https://github.com/facebook/react) 的可变式状态管理库，基于 [`@vue/reactivity`](https://github.com/vuejs/vue-next/tree/master/packages/reactivity) 进行开发。
+
+---
 
 **🔥 Who is using this library**
 
@@ -252,8 +254,8 @@ yarn build
 
 ### Changelog
 
-Detailed changes for each release are documented in the [release notes](https://github.com/veactjs/veact/blob/master/CHANGELOG.md).
+Detailed changes for each release are documented in the [release notes](/CHANGELOG.md).
 
 ### License
 
-[MIT](https://github.com/veactjs/veact/blob/master/LICENSE)
+[MIT](/LICENSE)
