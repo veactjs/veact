@@ -1,5 +1,6 @@
-/** @type {import('@surmon-china/libundler/lib/interface').LibundlerConfigObject} */
-module.exports = {
+import { defineConfig } from '@surmon-china/libundler'
+
+export default defineConfig({
   libName: 'veact',
   outFileName: 'veact',
   entry: './src/index.ts',
@@ -10,4 +11,4 @@ module.exports = {
     'react-dom': 'ReactDOM',
     '@vue/reactivity': 'VueReactivity',
   },
-}
+})

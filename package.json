@@ -1,7 +1,7 @@
 {
   "name": "veact",
   "version": "0.1.4",
-  "description": "Mutable state enhancer library for @react by @vue/reactivity",
+  "description": "Mutable state enhancer library for React by @vue/reactivity",
   "keywords": [
     "React mutable state lib",
     "React vue state",
@@ -39,7 +39,7 @@
     "@vue/reactivity": "^3.2.0"
   },
   "devDependencies": {
-    "@surmon-china/libundler": "^1.1.1",
+    "@surmon-china/libundler": "^2.1.0",
     "@testing-library/react-hooks": "^7.0.2",
     "@types/jest": "^27.4.0",
     "@types/react": "^17.0.38",
