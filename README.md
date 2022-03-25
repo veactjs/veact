@@ -12,8 +12,6 @@
 
 Mutable state enhancer library for [`React`](https://github.com/facebook/react) by [`@vue/reactivity`](https://github.com/vuejs/vue-next/tree/master/packages/reactivity).
 
-适用于 [`React`](https://github.com/facebook/react) 的可变式状态管理库，基于 [`@vue/reactivity`](https://github.com/vuejs/vue-next/tree/master/packages/reactivity) 进行开发。
-
 ---
 
 **🔥 Who is using this library**
