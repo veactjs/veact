@@ -39,7 +39,7 @@
     "@vue/reactivity": "^3.2.0"
   },
   "devDependencies": {
-    "@surmon-china/libundler": "^2.1.0",
+    "@surmon-china/libundler": "^2.2.0",
     "@testing-library/react-hooks": "^7.0.2",
     "@types/jest": "^27.4.0",
     "@types/react": "^17.0.38",
