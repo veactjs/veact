@@ -12,11 +12,7 @@
 
 Mutable state enhancer library for [`React`](https://github.com/facebook/react) by [`@vue/reactivity`](https://github.com/vuejs/vue-next/tree/master/packages/reactivity).
 
----
-
-**🔥 Who is using this library**
-
-Already used in production for these project :
+**Who is using this library 🔥**
 
 - **[veact-admin](https://github.com/surmon-china/veact-admin)** A CMS admin by react & veact
 - ...
