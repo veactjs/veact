@@ -10,7 +10,7 @@
 &nbsp;
 [![GitHub license](https://img.shields.io/github/license/veactjs/veact.svg?style=for-the-badge)](/LICENSE)
 
-Mutable state enhancer library for [`React`](https://github.com/facebook/react) by [`@vue/reactivity`](https://github.com/vuejs/vue-next/tree/master/packages/reactivity).
+Mutable state enhancer library for [`React`](https://github.com/facebook/react) based on [`@vue/reactivity`](https://github.com/vuejs/vue-next/tree/master/packages/reactivity), with limited interoperability.
 
 **Who is using this library 🔥**
 
