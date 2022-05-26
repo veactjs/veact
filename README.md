@@ -75,7 +75,7 @@ export const Component: React.FC = () => {
   return (
     <div>
       <span>{count.value}</span>
-      <Button onClick={increment}>increment</Button>
+      <button onClick={increment}>increment</button>
     </div>
   )
 }
@@ -102,7 +102,7 @@ export const Component: React.FC = () => {
   return (
     <div>
       <span>{count.value}</span>
-      <Button onClick={increment}>increment</Button>
+      <button onClick={increment}>increment</button>
     </div>
   )
 }
@@ -118,6 +118,7 @@ export const Component: React.FC = () => {
   const data = useReactive({
     count: 0,
   })
+
   const increment = () => {
     data.count++
   }
@@ -136,7 +137,7 @@ export const Component: React.FC = () => {
   return (
     <div>
       <span>{data.count}</span>
-      <Button onClick={increment}>increment</Button>
+      <button onClick={increment}>increment</button>
     </div>
   )
 }
@@ -153,6 +154,7 @@ export const Component: React.FC = () => {
     count: 4,
     year: 3,
   })
+
   const total = useComputed(() => {
     return data.count * data.year
   })
@@ -164,7 +166,7 @@ export const Component: React.FC = () => {
   return (
     <div>
       <span>{total.value}</span>
-      <Button onClick={incrementCount}>incrementCount</Button>
+      <button onClick={incrementCount}>incrementCount</button>
     </div>
   )
 }
@@ -181,6 +183,7 @@ export const Component: React.FC = () => {
     count: 0,
     list: [],
   })
+
   const fetch = () => {
     fetchData().then((result) => {
       batchedUpdates(() => {
@@ -205,22 +208,22 @@ import {
   // Veact APIs
 
   // lifecycle
-  onMounted, // lifecycle for react mounted
-  onBeforeUnmount, // lifecycle for react will unmount
-  onUpdated, // lifecycle for react updated
+  onMounted,
+  onBeforeUnmount,
+  onUpdated,
 
   // data
-  useRef, // ref hook
-  useShallowRef, // shallowRef hook
-  useReactive, // reactive hook
-  useShallowReactive, // shallowReactive hook
-  useComputed, // computed hook
+  useRef,
+  useShallowRef,
+  useReactive,
+  useShallowReactive,
+  useComputed,
 
   // watch
-  watch, // watch for reactivity data
-  useWatch, // watch hook
-  watchEffect, // watchEffect for reactivity data
-  useWatchEffect, // watchEffect hook
+  watch,
+  useWatch,
+  watchEffect,
+  useWatchEffect,
 
   // enhancer
   useReactivity, // any object data to reactivity data
