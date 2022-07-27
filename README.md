@@ -22,13 +22,13 @@ Mutable state enhancer library for [`React`](https://github.com/facebook/react) 
 ### Installation
 
 ```bash
-npm install react react-dom veact --save
+npm install veact --save
 ```
 
 or
 
 ```bash
-yarn add react react-dom veact
+yarn add veact
 ```
 
 ### Usage
