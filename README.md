@@ -10,7 +10,7 @@
 &nbsp;
 [![GitHub license](https://img.shields.io/github/license/veactjs/veact.svg?style=for-the-badge)](/LICENSE)
 
-Mutable state enhancer library for [`React`](https://github.com/facebook/react) based on [`@vue/reactivity`](https://github.com/vuejs/vue-next/tree/master/packages/reactivity), with limited interoperability.
+Mutable state enhancer library for [`React`](https://github.com/facebook/react) based on [`@vue/reactivity`](https://github.com/vuejs/core/tree/main/packages/reactivity), with limited interoperability.
 
 **Who is using this library 🔥**
 
@@ -86,11 +86,11 @@ import React from 'react'
 import { ref, useReactivity } from 'veact'
 
 // reactivity ref
-const _count = ref(0)
+const countRef = ref(0)
 
 export const Component: React.FC = () => {
   // to reactivity hook
-  const count = useReactivity(() => _count)
+  const count = useReactivity(() => countRef)
   const increment = () => {
     count.value++
   }
