@@ -15,6 +15,7 @@
     "url": "https://github.com/veactjs/veact.git"
   },
   "files": [
+    "CHANGELOG.md",
     "dist",
     "src"
   ],
