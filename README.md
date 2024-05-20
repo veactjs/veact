@@ -14,8 +14,8 @@ Mutable state enhancer library for [`React`](https://github.com/facebook/react) 
 
 **Who is using this library 🔥**
 
-- [**veact-admin**](https://github.com/surmon-china/veact-admin) A CMS admin by react & veact
 - [**veact-use**](https://github.com/veactjs/veact-use) Veact hooks.
+- [**surmon.admin**](https://github.com/surmon-china/surmon.admin) Admin client for [surmon.me](https://github.com/surmon-china/surmon.me) blog, powered by React & Veact.
 - ...
 
 ---
