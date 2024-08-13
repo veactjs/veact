@@ -25,5 +25,5 @@ export default [
   ...ts.configs.recommended,
   prettier,
   { rules },
-  { ignores: ['node_modules', 'bin', 'lib'] },
+  { ignores: ['node_modules', 'dist'] },
 ]

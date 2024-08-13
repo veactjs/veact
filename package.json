@@ -1,6 +1,6 @@
 {
   "name": "veact",
-  "version": "0.1.4",
+  "version": "1.0.0-beta.1",
   "description": "Mutable state enhancer library for React by @vue/reactivity",
   "keywords": [
     "React mutable state lib",
@@ -10,51 +10,64 @@
   ],
   "license": "MIT",
   "author": "Surmon",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/veactjs/veact.git"
-  },
+  "homepage": "https://github.com/veactjs/veact",
+  "funding": "https://github.com/veactjs/veact?sponsor=1",
+  "repository": "github:veactjs/veact",
   "files": [
+    "README.md",
     "CHANGELOG.md",
     "dist",
     "src"
   ],
   "sideEffects": false,
-  "main": "dist/veact.umd.js",
-  "module": "dist/veact.esm.js",
-  "browser": "dist/veact.umd.js",
-  "types": "dist/veact.esm.d.ts",
+  "type": "module",
+  "main": "./dist/veact.umd.cjs",
+  "module": "./dist/veact.js",
+  "browser": "./dist/veact.umd.cjs",
+  "types": "./dist/veact.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/veact.d.ts",
+      "import": "./dist/veact.js",
+      "require": "./dist/veact.umd.cjs"
+    }
+  },
   "scripts": {
-    "lint": "eslint --ext .ts src/**",
+    "dev": "vite",
+    "lint": "eslint src",
     "format": "prettier --write --parser typescript \"src/**/*.ts\"",
     "test": "jest",
-    "build": "libundler",
-    "rebirth": "npm run lint && npm run test && npm run build",
+    "build": "vite build",
+    "ci": "npm run lint && npm run test && npm run build",
     "release": ". ./scripts/release.sh"
   },
   "peerDependencies": {
-    "react": "^16.8.0  || ^17.0.0",
-    "react-dom": "^16.8.0  || ^17.0.0"
+    "react": "^16.8.0 || ^17 || ^18",
+    "react-dom": "^16.8.0 || ^17 || ^18"
   },
   "dependencies": {
-    "@vue/reactivity": "^3.2.0"
+    "@vue/reactivity": "^3.5.0-beta.1"
   },
   "devDependencies": {
-    "@surmon-china/libundler": "^2.2.0",
+    "@eslint/js": "^9.x",
     "@testing-library/react-hooks": "^7.0.2",
+    "@types/eslint": "^9.x",
     "@types/jest": "^27.4.0",
-    "@types/react": "^17.0.38",
-    "@types/react-dom": "^17.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.9.1",
-    "@typescript-eslint/parser": "^5.9.1",
-    "eslint": "^8.7.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^27.4.7",
-    "prettier": "^2.5.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "ts-jest": "^27.1.3",
-    "typescript": "^4.5.4"
+    "@types/react": "^18.x",
+    "@types/react-dom": "^18.x",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^9.x",
+    "eslint-config-prettier": "^9.x",
+    "eslint-plugin-prettier": "^5.x",
+    "globals": "^15.9.0",
+    "jest": "^29.x",
+    "prettier": "^3.x",
+    "react": "^18.x",
+    "react-dom": "^18.x",
+    "ts-jest": "^29.x",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.x",
+    "vite": "^5.4.0",
+    "vite-plugin-dts": "^4.0.2"
   }
 }
