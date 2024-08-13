@@ -1,6 +1,14 @@
 import viteDts from 'vite-plugin-dts'
 import viteReact from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import packageJson from './package.json'
+
+const bannerItems = [
+  `${packageJson.name} v${packageJson.version}`,
+  `Copyright (c) ${packageJson.author}. All rights reserved.`,
+  `Released under the ${packageJson.license} License.`,
+  `${packageJson.author} <${packageJson.homepage}>`,
+]
 
 export default defineConfig({
   // https://github.com/qmhc/vite-plugin-dts
@@ -14,8 +22,7 @@ export default defineConfig({
     rollupOptions: {
       external: ['react', 'react-dom', '@vue/reactivity'],
       output: {
-        // TODO:!
-        // banner: '/* my-library version ' + '@111' + ' */',
+        banner: [`/*!`, ...bannerItems.map((item) => `* ${item}`), `*/`].join('\n'),
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',

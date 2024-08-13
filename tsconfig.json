@@ -7,6 +7,7 @@
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "declaration": true,
     "emitDeclarationOnly": true,
     "skipLibCheck": true,
