@@ -3,72 +3,111 @@
  * @author Surmon <https://github.com/surmon-china>
  */
 
-// DOC: https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watcheffect
-// fork form: https://github.com/vuejs/vue-next/blob/master/packages/runtime-core/src/apiWatch.ts#L73
+// DOC: https://vuejs.org/api/reactivity-core.html#watcheffect
+// fork form: https://github.com/vuejs/core/blob/main/packages/runtime-core/src/apiWatch.ts#L82
 import { useState as useReactState } from 'react'
-import { DebuggerOptions, ReactiveEffect, EffectScheduler } from '@vue/reactivity'
+import { getCurrentScope, EffectFlags, ReactiveEffect } from '@vue/reactivity'
+import type { DebuggerOptions, EffectScheduler } from '@vue/reactivity'
 import { onBeforeUnmount } from '../lifecycle'
-import { callWithErrorHandling, callWithAsyncErrorHandling } from '../logger'
-import { WATCH_CLEANUP_ERROR, WATCH_CALLBACK_ERROR } from './patch'
+import { removeArrayItem } from '../_utils'
+import type { OnCleanup, EffectScope, WatchHandle } from './type'
+import {
+  WATCH_CLEANUP_ERROR,
+  WATCH_CALLBACK_ERROR,
+  callWithErrorHandling,
+  callWithAsyncErrorHandling,
+} from './patch'
 
 export type WatchEffectOptions = DebuggerOptions
-export type WatchStopHandle = () => void
-export type InvalidateCallbackRegistrator = (callback: () => void) => void
-export type WatchEffect = (onInvalidate: InvalidateCallbackRegistrator) => any
+export type WatchEffect = (onCleanup: OnCleanup) => void
 
 /**
+ * Runs a function immediately while reactively tracking its dependencies and re-runs it whenever the dependencies are changed.
+ *
+ * @param effect - The effect function to run.
+ * @param options - An optional options object that can be used to adjust the effect's flush timing or to debug the effect's dependencies; the `flush` option is not supported compared to Vue (3.5.0).
+ * @see {@link https://vuejs.org/api/reactivity-core.html#watcheffect Vue `watchEffect()`}
+ *
  * @example
- * const stopHandle = watchEffect(onInvalidate => {
- *   const token = performAsyncOperation(id.value)
- *   onInvalidate(() => {
- *     // id has changed or watcher is stopped.
- *     // invalidate previously pending async operation
- *     token.cancel()
- *   })
- * })
+ * ```js
+ * const count = ref(0)
+ * watchEffect(() => console.log(count.value))
+ * // -> logs 0
+ *
+ * count.value++
+ * // -> logs 1
+ * ```
  */
-export function watchEffect(
-  effect: WatchEffect,
-  options: WatchEffectOptions = {}
-): WatchStopHandle {
-  let effector: ReactiveEffect<any>
-  let cleanup: () => void
-  const onInvalidate: InvalidateCallbackRegistrator = (fn: () => void) => {
-    cleanup = effector.onStop = () => {
-      callWithErrorHandling(fn, WATCH_CLEANUP_ERROR)
-    }
-  }
+export function watchEffect(effectFn: WatchEffect, options: WatchEffectOptions = {}): WatchHandle {
+  let effect: ReactiveEffect<any>
+  let watchHandle: WatchHandle
+  let cleanup: (() => void) | undefined
 
-  const scheduler: EffectScheduler = () => {
-    if (!effector.active) {
-      return
+  const onCleanup: OnCleanup = (fn: () => void) => {
+    cleanup = effect.onStop = () => {
+      callWithErrorHandling(fn, WATCH_CLEANUP_ERROR)
+      cleanup = effect.onStop = undefined
     }
-    effector.run()
   }
 
   const getter = () => {
     // cleanup before running cb again
     cleanup?.()
-    return callWithAsyncErrorHandling(effect, WATCH_CALLBACK_ERROR, [onInvalidate])
+    return callWithAsyncErrorHandling(effectFn, WATCH_CALLBACK_ERROR, [onCleanup])
+  }
+
+  const scheduler: EffectScheduler = () => {
+    if (!((effect as any).flags & EffectFlags.ACTIVE) || !effect.dirty) {
+      return
+    }
+    effect.run()
   }
 
   // effector
-  effector = new ReactiveEffect(getter, scheduler)
-  effector.onTrack = options.onTrack
-  effector.onTrigger = options.onTrigger
+  effect = new ReactiveEffect(getter)
+  effect.scheduler = scheduler
+  effect.onTrack = options.onTrack
+  effect.onTrigger = options.onTrigger
+
+  const scope = getCurrentScope()
+  // @ts-ignore
+  watchHandle = () => {
+    effect.stop()
+    if (scope) {
+      removeArrayItem((scope as EffectScope).effects, effect)
+    }
+  }
+
+  watchHandle.pause = effect.pause.bind(effect)
+  watchHandle.resume = effect.resume.bind(effect)
+  watchHandle.stop = watchHandle
 
   // initial run
-  effector.run()
+  effect.run()
 
   // stop handle
-  return () => effector.stop()
+  return watchHandle
 }
 
-export function useWatchEffect(
-  effect: WatchEffect,
-  options?: WatchEffectOptions
-): WatchStopHandle {
-  const [stopHandle] = useReactState(() => watchEffect(effect, options))
-  onBeforeUnmount(() => stopHandle?.())
-  return stopHandle
+/**
+ * Runs a function immediately while reactively tracking its dependencies and re-runs it whenever the dependencies are changed.
+ *
+ * @param effect - The effect function to run.
+ * @param options - An optional options object that can be used to adjust the effect's flush timing or to debug the effect's dependencies; the `flush` option is not supported compared to Vue (3.5.0).
+ * @see {@link https://vuejs.org/api/reactivity-core.html#watcheffect Vue `watchEffect()`}
+ *
+ * @example
+ * ```js
+ * const count = useRef(0)
+ * useWatchEffect(() => console.log(count.value))
+ * // -> logs 0
+ *
+ * count.value++
+ * // -> logs 1
+ * ```
+ */
+export const useWatchEffect: typeof watchEffect = (effect: any, options?: any) => {
+  const [watchHandle] = useReactState(() => watchEffect(effect, options))
+  onBeforeUnmount(() => watchHandle.stop())
+  return watchHandle
 }

@@ -3,41 +3,80 @@
  * @author Surmon <https://github.com/surmon-china>
  */
 
-import { isRef } from '@vue/reactivity'
-import { isArray, isObject, isSet, isMap, isPlainObject } from '../utils'
+import { isRef, ReactiveFlags } from '@vue/reactivity'
+import { isArray, isObject, isSet, isMap, isFunction, isPromise, isPlainObject } from '../_utils'
+import { logger } from '../_logger'
 
-// fork form: https://github.com/vuejs/vue-next/blob/master/packages/runtime-core/src/errorHandling.ts
+export const NOOP_FN = () => {}
+
+// fork form: https://github.com/vuejs/core/blob/main/packages/runtime-core/src/errorHandling.ts
 export const WATCH_GETTER_ERROR = 'watcher getter'
 export const WATCH_CLEANUP_ERROR = 'watcher cleanup function'
 export const WATCH_CALLBACK_ERROR = 'watcher callback'
 
-// fork form: https://github.com/vuejs/vue-next/blob/master/packages/reactivity/src/reactive.ts#L16
-export const enum ReactiveFlags {
-  SKIP = '__v_skip',
-  IS_REACTIVE = '__v_isReactive',
-  IS_READONLY = '__v_isReadonly',
-  RAW = '__v_raw',
+// fork from: https://github.com/vuejs/vue-next/blob/main/packages/runtime-core/src/errorHandling.ts
+export function callWithErrorHandling(fn: Function, errorString: string, args?: unknown[]) {
+  try {
+    return args ? fn(...args) : fn()
+  } catch (error) {
+    logger.error(error, errorString)
+  }
 }
 
-// fork form: https://github.com/vuejs/vue-next/blob/master/packages/runtime-core/src/apiWatch.ts#L401
-export const traverse = (value: unknown, seen: Set<unknown> = new Set()) => {
-  if (!isObject(value) || seen.has(value) || (value as any)[ReactiveFlags.SKIP]) {
+export function callWithAsyncErrorHandling(
+  fn: Function | Function[],
+  errorString: string,
+  args?: unknown[],
+): any {
+  if (isFunction(fn)) {
+    const result = callWithErrorHandling(fn, errorString, args)
+    if (result && isPromise(result)) {
+      result.catch((error) => {
+        logger.error(error, errorString)
+      })
+    }
+    return result
+  }
+
+  if (isArray(fn)) {
+    const values = []
+    for (let i = 0; i < fn.length; i++) {
+      values.push(callWithAsyncErrorHandling(fn[i], errorString, args))
+    }
+    return values
+  }
+}
+
+// fork form: https://github.com/vuejs/core/blob/main/packages/runtime-core/src/apiWatch.ts#L466
+export function traverse(value: unknown, depth: number = Infinity, seen?: Set<unknown>): unknown {
+  if (depth <= 0 || !isObject(value) || (value as any)[ReactiveFlags.SKIP]) {
+    return value
+  }
+
+  seen = seen || new Set()
+  if (seen.has(value)) {
     return value
   }
   seen.add(value)
+  depth--
   if (isRef(value)) {
-    traverse(value.value, seen)
+    traverse(value.value, depth, seen)
   } else if (isArray(value)) {
     for (let i = 0; i < value.length; i++) {
-      traverse(value[i], seen)
+      traverse(value[i], depth, seen)
     }
   } else if (isSet(value) || isMap(value)) {
     value.forEach((v: any) => {
-      traverse(v, seen)
+      traverse(v, depth, seen)
     })
   } else if (isPlainObject(value)) {
     for (const key in value) {
-      traverse((value as any)[key], seen)
+      traverse(value[key], depth, seen)
+    }
+    for (const key of Object.getOwnPropertySymbols(value)) {
+      if (Object.prototype.propertyIsEnumerable.call(value, key)) {
+        traverse(value[key as any], depth, seen)
+      }
     }
   }
   return value

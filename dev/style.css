@@ -1,0 +1,53 @@
+:root {
+  --body-bg-color: initial;
+  --text-color: initial;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body-bg-color: #1e2227;
+    --text-color: #eee;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --body-bg-color: white;
+    --text-color: black;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--body-bg-color);
+  color: var(--text-color);
+  font-family: serif;
+  user-select: none;
+}
+
+pre {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+button {
+  padding: 4px 6px;
+  margin: 4px;
+  cursor: pointer;
+}
+
+.app {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.module {
+  min-width: 210px;
+  max-width: 380px;
+  padding: 1rem;
+  border: 1px solid #333;
+}
+
+.module .title {
+  margin-top: 0;
+}

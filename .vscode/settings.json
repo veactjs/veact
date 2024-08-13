@@ -4,8 +4,7 @@
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": "explicit"
   },
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["Registrator", "Unmount", "codecov", "libundler", "surmon", "veact"]
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

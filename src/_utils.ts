@@ -5,9 +5,8 @@
 
 import { useReducer } from 'react'
 
-export type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any
-  ? A
-  : never
+export type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any ? A : never
+export type IfAny<T, Y, N> = 0 extends 1 & T ? Y : N
 
 export const increment = (s: number) => s + 1
 export const useForceUpdate = () => useReducer(increment, 0)[1]
@@ -31,7 +30,7 @@ export const isSet = (value: unknown): value is Set<any> => {
 export const isDate = (value: unknown): value is Date => {
   return value instanceof Date
 }
-export const isFunction = (value: unknown): value is Function => {
+export const isFunction = (value: unknown): value is (...args: any[]) => any => {
   return typeof value === 'function'
 }
 export const isString = (value: unknown): value is string => {
@@ -48,4 +47,11 @@ export const isPlainObject = (value: unknown): value is object => {
 }
 export const isPromise = <T = any>(value: unknown): value is Promise<T> => {
   return isObject(value) && isFunction(value.then) && isFunction(value.catch)
+}
+
+export const removeArrayItem = <T>(array: T[], element: T) => {
+  const i = array.indexOf(element)
+  if (i > -1) {
+    array.splice(i, 1)
+  }
 }
