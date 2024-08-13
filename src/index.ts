@@ -32,8 +32,8 @@ export type { WatchEffect, WatchEffectOptions } from './watch/watchEffect'
 // watch handle
 export type { WatchStopHandle, WatchHandle } from './watch/type'
 
-// reactivity enhancer hooks
-export { useReactivity } from './reactivity'
-
 // effectScope hooks
 export { useEffectScope } from './effectScope'
+
+// reactivity enhancer hooks
+export { useReactivity } from './reactivity'
