@@ -41,7 +41,7 @@ export const Component: React.FC = () => {
       <hr />
       <button onClick={() => scope.pause()}>pause Scope</button>
       <button onClick={() => scope.resume()}>resume Scope</button>
-      <button onClick={() => scope.stop()}>disabled Scope</button>
+      <button onClick={() => scope.stop()}>stop Scope</button>
     </div>
   )
 }
