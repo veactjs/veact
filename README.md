@@ -38,11 +38,14 @@ A mutable state enhancer library for [`React`](https://github.com/facebook/react
 ## Installation
 
 ```bash
+# using npm
 npm install veact --save
-```
 
-```bash
+# using yarn
 yarn add veact
+
+# using pnpm
+pnpm add veact
 ```
 
 ## Usage
