@@ -3,12 +3,20 @@ import viteReact from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import packageJson from './package.json'
 
-const bannerItems = [
-  `${packageJson.name} v${packageJson.version}`,
-  `Copyright (c) ${packageJson.author}. All rights reserved.`,
-  `Released under the ${packageJson.license} License.`,
-  `${packageJson.author} <${packageJson.homepage}>`,
-]
+const banner = `
+/*!
+ * ${packageJson.name} v${packageJson.version}
+ * ${packageJson.homepage}
+ *
+ * Includes @vue/reactivity
+ * https://github.com/vuejs/core/tree/main/packages/reactivity
+ *
+ * (c) 2021-present ${packageJson.author} and Veact contributors.
+ * Released under the ${packageJson.license} License.
+ *
+ * Date: ${new Date().toISOString()}
+ */
+`
 
 export default defineConfig({
   // https://github.com/qmhc/vite-plugin-dts
@@ -22,7 +30,7 @@ export default defineConfig({
     rollupOptions: {
       external: ['react', 'react-dom', '@vue/reactivity'],
       output: {
-        banner: [`/*!`, ...bannerItems.map((item) => `* ${item}`), `*/`].join('\n'),
+        banner: `\n${banner}\n`,
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
