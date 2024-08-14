@@ -1,7 +1,7 @@
 <br />
 
 <p align="center">
-  <img src="/logo.png" height="120" alt="veact" />
+  <img src="/logo.svg" height="120" alt="veact" />
 </p>
 
 # Veact
