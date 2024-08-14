@@ -1,13 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks'
-import {
-  ref,
-  reactive,
-  watch,
-  useRef,
-  useWatch,
-  watchEffect,
-  useWatchEffect,
-} from '../src'
+import { ref, reactive, watch, useRef, useWatch, watchEffect, useWatchEffect } from '../src'
 
 test('<watchEffect> ref & onInvalidate', () => {
   const logs: any[] = []
@@ -56,7 +48,7 @@ test('<watch> function ref', () => {
   const data = ref(3)
   watch(
     () => data.value,
-    (value) => logs.push(value)
+    (value) => logs.push(value),
   )
 
   expect(logs.length).toBe(0)
@@ -72,7 +64,7 @@ test('<watch> array function ref', () => {
   const data = ref(3)
   watch(
     () => [data.value],
-    ([value]) => logs.push(value)
+    ([value]) => logs.push(value),
   )
 
   expect(logs.length).toBe(0)
@@ -119,7 +111,7 @@ test('<watch> function reactive cloneDeep', () => {
     (newData, oldData) => {
       isEqual = newData === oldData
       logs.push(newData)
-    }
+    },
   )
 
   expect(logs.length).toBe(0)
@@ -142,7 +134,7 @@ test('<watch> function reactive deep', () => {
     },
     {
       deep: true,
-    }
+    },
   )
 
   expect(logs.length).toBe(0)
@@ -159,7 +151,7 @@ test('<watch> function array mixin', () => {
   const reactiveData = reactive({ value: false })
   watch(
     () => [refData.value, reactiveData.value] as const,
-    (newData) => logs.push(...newData)
+    (newData) => logs.push(...newData),
   )
 
   expect(logs.length).toBe(0)

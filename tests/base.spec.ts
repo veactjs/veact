@@ -15,7 +15,6 @@ import {
   watchEffect,
   useWatchEffect,
   useReactivity,
-  batchedUpdates,
 } from '../src'
 
 test('<exports> should be export all @vue/reactivity members', () => {
@@ -23,7 +22,7 @@ test('<exports> should be export all @vue/reactivity members', () => {
     Object.keys(vueReactivity).every((key) => {
       const targetMember = (veact as any)[key]
       return Boolean(targetMember) && (vueReactivity as any)[key] === targetMember
-    })
+    }),
   ).toBeTruthy()
 })
 
@@ -42,7 +41,6 @@ test('<type> should be function type', () => {
   expect(typeof watchEffect).toBe(hooksTargetType)
   expect(typeof useWatchEffect).toBe(hooksTargetType)
   expect(typeof useReactivity).toBe(hooksTargetType)
-  expect(typeof batchedUpdates).toBe(hooksTargetType)
 })
 
 test('<lifecycle>', () => {
