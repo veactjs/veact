@@ -296,7 +296,7 @@ Veact also re-exports all APIs from [`@vue/reactivity`](https://github.com/vuejs
 | `useEffectScope`     | Vue [`effectScope()`](https://vuejs.org/api/reactivity-advanced.html#effectscope)                  | Unlike `effectScope` in Vue, `useEffectScope().run()` will only execute once within the component and cannot contain any other hooks.                                                             |
 | `useReactivity`      | Internal implementation in Veact                                                                   | Converts some of the 'raw Vue' data, which is not already wrapped in a hook, into reactive hook data to ensure proper reactivity within the component.                                            |
 
-### Development
+## Development
 
 ```bash
 # install dependencies
@@ -315,10 +315,10 @@ pnpm run test
 pnpm run build
 ```
 
-### Changelog
+## Changelog
 
 Detailed changes for each release are documented in the [release notes](/CHANGELOG.md).
 
-### License
+## License
 
 Licensed under the [MIT](/LICENSE) License.
