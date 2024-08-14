@@ -215,7 +215,7 @@ export const Component: React.FC = () => {
 
 ```tsx
 import React from 'react'
-import { watch, useRef, useEffectScope } from 'veact'
+import { watch, useRef, useEffectScope, onScopeDispose } from 'veact'
 
 export const Component: React.FC = () => {
   const scope = useEffectScope()
@@ -229,6 +229,7 @@ export const Component: React.FC = () => {
     const doubled = computed(() => counter.value * 2)
     watch(doubled, (newValue) => console.log(newValue))
     watchEffect(() => console.log('doubled: ', doubled.value))
+    onScopeDispose(() => console.log('effect scope is stopped'))
   })
 
   return (
