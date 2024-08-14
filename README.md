@@ -33,6 +33,7 @@ A mutable state enhancer library for [`React`](https://github.com/facebook/react
 - [Example: Reactive](#reactive)
 - [Example: Computed](#computed)
 - [Example: Watch](#watch)
+- [Example: EffectScope](#effectscope)
 - [Example: Reactivity](#reactivity)
 
 ## Installation
@@ -205,6 +206,38 @@ export const Component: React.FC = () => {
     <div>
       <span>{data.count}</span>
       <button onClick={incrementCount}>incrementCount</button>
+    </div>
+  )
+}
+```
+
+### EffectScope
+
+```tsx
+import React from 'react'
+import { watch, useRef, useEffectScope } from 'veact'
+
+export const Component: React.FC = () => {
+  const scope = useEffectScope()
+  const counter = useRef(0)
+
+  const incrementCounter = () => {
+    counter.value++
+  }
+
+  scope.run(() => {
+    const doubled = computed(() => counter.value * 2)
+    watch(doubled, (newValue) => console.log(newValue))
+    watchEffect(() => console.log('doubled: ', doubled.value))
+  })
+
+  return (
+    <div>
+      <span>{counter.value}</span>
+      <button onClick={incrementCounter}>incrementCounter</button>
+      <button onClick={() => scope.pause()}>pause Scope</button>
+      <button onClick={() => scope.resume()}>resume Scope</button>
+      <button onClick={() => scope.stop()}>stop Scope</button>
     </div>
   )
 }
