@@ -30,6 +30,7 @@ All notable changes to this project will be documented in this file.
 #### Fixed
 
 - Fixed Issue [#6](https://github.com/veactjs/veact/issues/6).
+- Fixed Issue [#4](https://github.com/veactjs/veact/issues/4).
 
 ### v0.1.4 (2022-01-17)
 
