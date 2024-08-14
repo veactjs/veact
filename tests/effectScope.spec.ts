@@ -1,10 +1,11 @@
 import { test, expect } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
-import { ref, reactive, useRef, watch, EffectScope, onUpdated, useEffectScope } from '../src'
+import { ref, reactive, useRef, watch, EffectScope, onUpdated, useEffectScope, onScopeDispose } from '../src'
 
 test('<useEffectScope>', () => {
   let renderCount = 0
   let scopeRunCount = 0
+  let scopeDisposed = false
   const foo = ref(0)
   const bar = reactive({ count: 10 })
 
@@ -23,6 +24,9 @@ test('<useEffectScope>', () => {
       watch(bar, () => {
         barWatchChanged.value++
       })
+      onScopeDispose(() => {
+        scopeDisposed = true
+      })
     })
 
     return {
@@ -34,6 +38,7 @@ test('<useEffectScope>', () => {
 
   expect(renderCount).toBe(0)
   expect(scopeRunCount).toBe(1)
+  expect(scopeDisposed).toBe(false)
   expect(result.current.scope).toBeInstanceOf(EffectScope)
 
   act(() => foo.value++)
@@ -56,11 +61,13 @@ test('<useEffectScope>', () => {
   expect(foo.value).toBe(2)
   expect(bar.count).toBe(12)
   expect(renderCount).toBe(2)
+  expect(scopeDisposed).toBe(false)
 
   act(() => result.current.scope.resume())
   expect(result.current.fooWatchChanged.value).toBe(2)
   expect(result.current.barWatchChanged.value).toBe(2)
   expect(renderCount).toBe(3)
+  expect(scopeDisposed).toBe(false)
 
   act(() => result.current.scope.stop())
   act(() => foo.value++)
@@ -68,6 +75,7 @@ test('<useEffectScope>', () => {
   expect(result.current.fooWatchChanged.value).toBe(2)
   expect(result.current.barWatchChanged.value).toBe(2)
   expect(renderCount).toBe(3)
+  expect(scopeDisposed).toBe(true)
 
   act(() => result.current.scope.resume())
   act(() => foo.value++)
