@@ -37,8 +37,9 @@
     "build": "vite build",
     "lint": "eslint src",
     "format": "prettier --write --parser typescript \"src/**/*.ts\"",
-    "test": "vitest",
-    "coverage": "vitest run --coverage",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "test:coverage": "vitest run --coverage",
     "ci": "npm run lint && npm run test && npm run build",
     "release": ". ./scripts/release.sh"
   },
@@ -55,7 +56,7 @@
     "@types/eslint": "^9.x",
     "@types/react": "^18.x",
     "@types/react-dom": "^18.x",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-react": "^4.x",
     "@vitest/coverage-v8": "^2.0.5",
     "eslint": "^9.x",
     "eslint-config-prettier": "^9.x",
@@ -68,7 +69,7 @@
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.x",
     "vite": "^5.4.0",
-    "vite-plugin-dts": "^4.0.2",
+    "vite-plugin-dts": "^4.0.3",
     "vitest": "^2.x"
   }
 }
