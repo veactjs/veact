@@ -2,14 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
-### v1.0.0 (2024-08-12)
+### v1.0.0-beta.1 (2024-08-12)
 
-- Upgrade Eslint to v9
-- Update `React` & `react-dom` peerDependencies versions
-- Remove `batchedUpdates` API
-- Using `vite` instead of `libundler` as bundler
-- Using `pnpm` instead of `yarn`
-- Fix [#6](https://github.com/veactjs/veact/issues/6)
+#### Added
+
+- Introduced `useEffectScope` API.
+- Introduced `useCustomRef` API.
+- Introduced `useReadonly` and `useShallowReadonly` APIs.
+- Added JSDoc comments for all functions.
+- Added API documentation to `README.md`.
+- Added development mode.
+
+#### Changed
+
+- Refactored `watch`, `useWatch`, `watchEffect`, and `useWatchEffect` APIs.
+- Replaced `yarn` with `pnpm`.
+- Replaced `libundler` with `vite` as the bundler.
+- Upgraded `React` and `react-dom` peerDependencies versions.
+- Upgraded ESLint to v9.
+- Updated unit test scripts.
+
+#### Removed
+
+- Removed `batchedUpdates` API.
+
+#### Fixed
+
+- Fixed Issue [#6](https://github.com/veactjs/veact/issues/6).
 
 ### v0.1.4 (2022-01-17)
 
