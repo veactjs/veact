@@ -39,7 +39,7 @@
     "format": "prettier --write --parser typescript \"src/**/*.ts\"",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "test:coverage": "vitest run --coverage",
+    "test:coverage": "vitest run --coverage --reporter=junit --outputFile=./junit.xml",
     "ci": "npm run lint && npm run test && npm run build",
     "release": ". ./scripts/release.sh"
   },

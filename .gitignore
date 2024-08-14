@@ -6,8 +6,10 @@ node_modules
 package-lock.json
 npm-debug.log
 
+
 # output
 dist
 
 # Test Relative Folders
 coverage
+junit.xml
