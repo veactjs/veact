@@ -5,7 +5,7 @@ import prettier from 'eslint-plugin-prettier/recommended'
 
 const globalsConfig = {
   ...globals.node,
-  ...globals.jest,
+  ...globals.browser,
 }
 
 const rules = {

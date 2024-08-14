@@ -24,7 +24,7 @@ export type WatchEffect = (onCleanup: OnCleanup) => void
 /**
  * Runs a function immediately while reactively tracking its dependencies and re-runs it whenever the dependencies are changed.
  *
- * @param effect - The effect function to run.
+ * @param effectFn - The effect function to run.
  * @param options - An optional options object that can be used to adjust the effect's flush timing or to debug the effect's dependencies; the `flush` option is not supported compared to Vue (3.5.0).
  * @see {@link https://vuejs.org/api/reactivity-core.html#watcheffect Vue `watchEffect()`}
  *

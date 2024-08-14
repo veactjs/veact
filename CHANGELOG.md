@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 
 - Refactored `watch`, `useWatch`, `watchEffect`, and `useWatchEffect` APIs.
 - Replaced `yarn` with `pnpm`.
+- Replaced `jest` with `vitest`.
 - Replaced `libundler` with `vite` as the bundler.
 - Upgraded `React` and `react-dom` peerDependencies versions.
 - Upgraded ESLint to v9.

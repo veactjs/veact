@@ -23,7 +23,7 @@ jobs:
         run: pnpm install
 
       - name: Test
-        run: pnpm run test
+        run: pnpm run coverage
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4

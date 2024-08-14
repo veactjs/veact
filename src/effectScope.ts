@@ -4,7 +4,7 @@
  */
 
 import { useState as useReactState, useRef as useReactRef, useCallback as useReactCallback } from 'react'
-import { effectScope, EffectScope } from '@vue/reactivity'
+import { effectScope } from '@vue/reactivity'
 import { ArgumentTypes } from './_utils'
 
 /**
@@ -19,23 +19,16 @@ import { ArgumentTypes } from './_utils'
 export function useEffectScope(...args: ArgumentTypes<typeof effectScope>) {
   const hasRun = useReactRef(false)
   const [scope] = useReactState(() => effectScope(...args))
-  const runFn = useReactCallback(
-    <T>(fn: () => T) => {
-      if (!hasRun.current) {
-        hasRun.current = true
-        return scope.run(fn)
-      } else {
-        return undefined
-      }
-    },
-    [scope],
-  )
+  const originalRunRef = useReactRef(scope.run)
+  const runFn = useReactCallback(<T>(fn: () => T) => {
+    if (!hasRun.current) {
+      hasRun.current = true
+      return originalRunRef.current.bind(scope)(fn)
+    } else {
+      return undefined
+    }
+  }, [])
 
-  return {
-    ...scope,
-    run: runFn,
-    pause: scope.pause.bind(scope),
-    resume: scope.resume.bind(scope),
-    stop: scope.stop.bind(scope),
-  } as EffectScope
+  scope.run = runFn
+  return scope
 }

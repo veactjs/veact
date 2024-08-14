@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import viteDts from 'vite-plugin-dts'
 import viteReact from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
@@ -21,6 +22,12 @@ const banner = `
 export default defineConfig({
   // https://github.com/qmhc/vite-plugin-dts
   plugins: [viteReact(), viteDts({ rollupTypes: true })],
+  test: {
+    environment: 'jsdom',
+    coverage: {
+      include: ['src/**/*'],
+    },
+  },
   build: {
     lib: {
       entry: './src/index.ts',
