@@ -12,7 +12,7 @@
   ],
   "license": "MIT",
   "author": "Surmon",
-  "repository": "https://github.com/veactjs/veact",
+  "repository": "veactjs/veact",
   "homepage": "https://github.com/veactjs/veact",
   "funding": "https://github.com/veactjs/veact?sponsor=1",
   "files": [
