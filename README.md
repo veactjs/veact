@@ -18,13 +18,19 @@
 
 A mutable state enhancer library for [`React`](https://github.com/facebook/react), built on top of [`@vue/reactivity`](https://github.com/vuejs/core/tree/main/packages/reactivity).
 
-**Who is using this library 🔥**
+#### Why Veact?
+
+If you’re frustrated with the repetitive task of defining `props`, `emits`, `slots` and `attrs` in Vue, sometimes struggling to keep track of types, and you value the simplicity of managing everything with interfaces in React, then Veact is for you. Veact effortlessly merges the low cognitive overhead of Vue’s mutable state with the robust type support and flexibility of React’s JSX. It strikes a perfect balance between the strengths of both frameworks, providing a near-flawless development experience—without the complexity and potential pitfalls of useEffect in React.
+
+Veact embodies what I believe is the **“best of both worlds”**—a powerful, yet intuitive library crafted to simplify and enhance your front-end development experience and efficiency.
+
+#### Who is using this library 🔥
 
 - [**veact-use**](https://github.com/veactjs/veact-use) Veact hooks.
 - [**surmon.admin**](https://github.com/surmon-china/surmon.admin) A CMS admin client for [surmon.me](https://github.com/surmon-china/surmon.me) blog.
 - ...
 
-**API & examples**
+#### API & examples
 
 - [API List](#api)
 - [Example: Lifecycle](#lifecycle)
