@@ -63,7 +63,7 @@ export function watchEffect(effectFn: WatchEffect, options: WatchEffectOptions =
     effect.run()
   }
 
-  // effector
+  // effect
   effect = new ReactiveEffect(getter)
   effect.scheduler = scheduler
   effect.onTrack = options.onTrack

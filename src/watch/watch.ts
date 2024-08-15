@@ -21,6 +21,8 @@ import {
 } from './patch'
 
 // fork form: https://github.com/vuejs/core/blob/main/packages/runtime-core/src/apiWatch.ts
+// commits: https://github.com/vuejs/core/commits/main/packages/runtime-core/src/apiWatch.ts
+// changelog: https://github.com/vuejs/core/blob/main/CHANGELOG.md
 
 // initial value for watchers to trigger on undefined initial values
 const INITIAL_WATCHER_VALUE = {}
@@ -232,7 +234,6 @@ export function watch<T = any, Immediate extends Readonly<boolean> = false>(
   }
 
   effect = new ReactiveEffect<T>(getter)
-  ;(effect as any).flags |= EffectFlags.NO_BATCH
   effect.scheduler = scheduler
   effect.onTrack = onTrack
   effect.onTrigger = onTrigger

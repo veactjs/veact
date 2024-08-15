@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+### v1.0.0-beta.2 (2024-08-15)
+
+No changes, just synced with `@vue/reactivity` [v3.5.0-beta.2](https://github.com/vuejs/core/blob/main/CHANGELOG.md#350-beta2-2024-08-15).
+
 ### v1.0.0-beta.1 (2024-08-12)
 
 #### Added

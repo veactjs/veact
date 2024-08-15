@@ -1,6 +1,6 @@
 {
   "name": "veact",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Mutable state enhancer library for React by @vue/reactivity",
   "keywords": [
     "React",
@@ -50,7 +50,7 @@
     "react-dom": "^16.8.0 || ^17 || ^18 || ^19"
   },
   "dependencies": {
-    "@vue/reactivity": "^3.5.0-beta.1"
+    "@vue/reactivity": "^3.5.0-beta.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.x",

@@ -1,6 +1,12 @@
-import { test, expect } from 'vitest'
+import { test, expect, vi, afterEach } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import { reactive, isReactive, isReadonly, onUpdated, useReadonly, useShallowReadonly } from '../src'
+
+// for: [Vue warn] Set operation on key "xxx" failed: target is readonly.
+const consoleMock = vi.spyOn(console, 'warn').mockImplementation(() => undefined)
+afterEach(() => {
+  consoleMock.mockReset()
+})
 
 const dataObject = reactive({
   data: 10,
@@ -30,6 +36,18 @@ test('<useReadonly>', () => {
   act(() => result.current.nested.data++)
   expect(result.current.nested.data).toBe(1)
   expect(renderCount).toBe(0)
+
+  expect(consoleMock).toHaveBeenCalledTimes(2)
+  expect(consoleMock).toHaveBeenNthCalledWith(
+    1,
+    `[Vue warn] Set operation on key "data" failed: target is readonly.`,
+    result.current,
+  )
+  expect(consoleMock).toHaveBeenNthCalledWith(
+    2,
+    `[Vue warn] Set operation on key "data" failed: target is readonly.`,
+    result.current.nested,
+  )
 })
 
 test('<useShallowReadonly>', () => {
@@ -54,4 +72,10 @@ test('<useShallowReadonly>', () => {
   act(() => result.current.nested.data++)
   expect(result.current.nested.data).toBe(2)
   expect(renderCount).toBe(0)
+
+  expect(consoleMock).toHaveBeenCalledOnce()
+  expect(consoleMock).toHaveBeenLastCalledWith(
+    `[Vue warn] Set operation on key "data" failed: target is readonly.`,
+    result.current,
+  )
 })
