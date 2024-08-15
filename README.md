@@ -126,7 +126,7 @@ export const Component: React.FC = () => {
 
 ```tsx
 import React from 'react'
-import { useRef, useReactive } from 'veact'
+import { useReactive } from 'veact'
 
 export const Component: React.FC = () => {
   const data = useReactive({
