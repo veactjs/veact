@@ -14,7 +14,7 @@
   "author": "Surmon",
   "homepage": "https://github.com/veactjs/veact",
   "funding": "https://github.com/veactjs/veact?sponsor=1",
-  "repository": "github:veactjs/veact",
+  "repository": "https://github.com/veactjs/veact",
   "files": [
     "README.md",
     "CHANGELOG.md",
