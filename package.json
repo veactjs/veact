@@ -3,10 +3,12 @@
   "version": "1.0.0-beta.1",
   "description": "Mutable state enhancer library for React by @vue/reactivity",
   "keywords": [
-    "React mutable state lib",
+    "React",
+    "React mutable state",
     "React vue state",
     "React composition API",
-    "React state library"
+    "React state library",
+    "Vue reactivity"
   ],
   "license": "MIT",
   "author": "Surmon",
