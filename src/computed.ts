@@ -4,7 +4,7 @@
  */
 
 import { useState as useReactState } from 'react'
-import { useWatch } from './watch/watch'
+import { useWatch } from './watch'
 import { useForceUpdate } from './_utils'
 import { computed as vComputed } from '@vue/reactivity'
 import type {

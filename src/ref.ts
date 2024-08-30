@@ -5,7 +5,7 @@
 
 import { useState as useReactState } from 'react'
 import { useForceUpdate, IfAny } from './_utils'
-import { useWatch } from './watch/watch'
+import { useWatch } from './watch'
 import { ref as vRef, shallowRef as vShallowRef, customRef as vCustomRef } from '@vue/reactivity'
 import type { Ref, UnwrapRef, ShallowRef, CustomRefFactory } from '@vue/reactivity'
 

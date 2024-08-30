@@ -4,7 +4,7 @@
  */
 
 import { useState as useReactState } from 'react'
-import { useWatch } from './watch/watch'
+import { useWatch } from './watch'
 import { useForceUpdate } from './_utils'
 import { reactive as vReactive, shallowReactive as vShallowReactive } from '@vue/reactivity'
 import type { Reactive, ShallowReactive } from '@vue/reactivity'

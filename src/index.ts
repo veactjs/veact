@@ -5,6 +5,7 @@
 
 // redirect all APIs from @vue/reactivity
 export * from '@vue/reactivity'
+export { watch as baseWatch } from '@vue/reactivity'
 
 // lifecycle hooks
 export { onMounted, onUpdated, onBeforeUnmount } from './lifecycle'
@@ -22,15 +23,12 @@ export { useReadonly, useShallowReadonly } from './readonly'
 export { useComputed } from './computed'
 
 // watch and hooks
-export { watch, useWatch } from './watch/watch'
-export type { WatchOptions, WatchSource, MultiWatchSources, WatchCallback } from './watch/watch'
+export { watch, useWatch } from './watch'
+export type { WatchOptions, MultiWatchSources } from './watch'
 
 // watchEffect and hooks
-export { watchEffect, useWatchEffect } from './watch/watchEffect'
-export type { WatchEffect, WatchEffectOptions } from './watch/watchEffect'
-
-// watch handle
-export type { WatchStopHandle, WatchHandle } from './watch/type'
+export { watchEffect, useWatchEffect } from './watchEffect'
+export type { WatchEffectOptions } from './watchEffect'
 
 // effectScope hooks
 export { useEffectScope } from './effectScope'
