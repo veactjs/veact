@@ -23,7 +23,7 @@ export interface WatchOptions<Immediate = boolean> extends DebuggerOptions {
   immediate?: Immediate
   deep?: boolean | number
   once?: boolean
-  // The `flush` option is not supported in react at the moment.
+  // The `flush` option is not supported in veact at the moment.
   // flush?: 'pre' | 'post' | 'sync'
 }
 
