@@ -4,10 +4,10 @@
  */
 
 import { useState as useReactState } from 'react'
+import { ref as vueRef, shallowRef as vueShallowRef, customRef as vueCustomRef } from '@vue/reactivity'
+import type { Ref, UnwrapRef, ShallowRef, CustomRefFactory } from '@vue/reactivity'
 import { useForceUpdate, IfAny } from './_utils'
 import { useWatch } from './watch'
-import { ref as vRef, shallowRef as vShallowRef, customRef as vCustomRef } from '@vue/reactivity'
-import type { Ref, UnwrapRef, ShallowRef, CustomRefFactory } from '@vue/reactivity'
 
 /**
  * Takes an inner value and returns a reactive and mutable ref object, which
@@ -30,10 +30,10 @@ export function useRef<T>(
 ): [T] extends [Ref] ? IfAny<T, Ref<T>, T> : Ref<UnwrapRef<T>, UnwrapRef<T> | T>
 export function useRef<T = any>(): Ref<T | undefined>
 export function useRef(initValue?: unknown) {
-  const [refObj] = useReactState(() => vRef(initValue))
+  const [refObject] = useReactState(() => vueRef(initValue))
   const forceUpdate = useForceUpdate()
-  useWatch(refObj, forceUpdate, { deep: true })
-  return refObj as unknown as any
+  useWatch(refObject, forceUpdate, { deep: true })
+  return refObject as unknown as any
 }
 
 /**
@@ -56,10 +56,10 @@ export function useShallowRef<T>(
 ): Ref extends T ? (T extends Ref ? IfAny<T, ShallowRef<T>, T> : ShallowRef<T>) : ShallowRef<T>
 export function useShallowRef<T = any>(): ShallowRef<T | undefined>
 export function useShallowRef(initValue?: unknown) {
-  const [sRefObj] = useReactState(() => vShallowRef(initValue))
+  const [shallowRefObject] = useReactState(() => vueShallowRef(initValue))
   const forceUpdate = useForceUpdate()
-  useWatch(sRefObj, forceUpdate)
-  return sRefObj
+  useWatch(shallowRefObject, forceUpdate)
+  return shallowRefObject
 }
 
 /**
@@ -70,8 +70,8 @@ export function useShallowRef(initValue?: unknown) {
  * @see {@link https://vuejs.org/api/reactivity-advanced.html#customref Vue `customRef()`}
  */
 export function useCustomRef<T>(factory: CustomRefFactory<T>): Ref<T> {
-  const [cRefObj] = useReactState(() => vCustomRef(factory))
+  const [customRefObject] = useReactState(() => vueCustomRef(factory))
   const forceUpdate = useForceUpdate()
-  useWatch(cRefObj, forceUpdate)
-  return cRefObj
+  useWatch(customRefObject, forceUpdate)
+  return customRefObject
 }
