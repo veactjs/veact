@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+### v1.0.0 (2024-09-05)
+
+#### Added
+
+- Export `watch` as `baseWatch` from `@vue/reactivity`
+- Introduced `useEffectScope` API.
+- Introduced `useCustomRef` API.
+- Introduced `useReadonly` and `useShallowReadonly` APIs.
+- Added JSDoc comments for all functions.
+- Added API documentation to `README.md`.
+- Added development mode.
+
+#### Changed
+
+- Refactored `watch`, `useWatch`, `watchEffect`, and `useWatchEffect` APIs.
+- Replaced `yarn` with `pnpm`.
+- Replaced `jest` with `vitest`.
+- Replaced `libundler` with `vite` as the bundler.
+- Upgraded `React` and `react-dom` peerDependencies versions.
+- Upgraded ESLint to v9.
+- Updated unit test scripts.
+
+#### Removed
+
+- Removed `batchedUpdates` API.
+
 ### v1.0.0-beta.2 (2024-08-15)
 
 No changes, just synced with `@vue/reactivity` [v3.5.0-beta.2](https://github.com/vuejs/core/blob/main/CHANGELOG.md#350-beta2-2024-08-15).
