@@ -1,14 +1,15 @@
 import { test, expect } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
-import { ref, reactive, watch, useRef, useWatch, onUpdated } from '../src'
+import { ref, reactive, watch, useRef, useWatch, onUpdated, onWatcherCleanup } from '../src'
 
-test('<watch> onCleanup / watchHandle', () => {
+test('<watch> watchHandle / onCleanup / onWatcherCleanup', () => {
   const logs: any[] = []
   const count = ref(0)
 
   const watchHandle = watch(count, (value, _, onCleanup) => {
     logs.push(value)
     onCleanup(() => logs.push('onCleanup'))
+    onWatcherCleanup(() => logs.push('onWatcherCleanup'))
   })
 
   expect(logs.length).toBe(0)
@@ -30,14 +31,18 @@ test('<watch> onCleanup / watchHandle', () => {
   watchHandle.resume()
   count.value = 3
   expect(logs.at(-1)).toBe(3)
+  expect(logs.length).toBe(7)
 
   watchHandle()
-  expect(logs.at(-2)).toBe(3)
-  expect(logs.at(-1)).toBe('onCleanup')
+  expect(logs.length).toBe(9)
+  expect(logs.at(-1)).toBe('onWatcherCleanup')
+  expect(logs.at(-2)).toBe('onCleanup')
+  expect(logs.at(-3)).toBe(3)
 
   count.value = 4
   expect(count.value).toBe(4)
-  expect(logs.at(-1)).toBe('onCleanup')
+  expect(logs.length).toBe(9)
+  expect(logs.at(-1)).toBe('onWatcherCleanup')
 })
 
 test('<watch> { immediate: true }', () => {

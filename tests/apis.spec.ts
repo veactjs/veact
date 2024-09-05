@@ -22,11 +22,14 @@ import {
 } from '../src'
 
 test('<exports> should be export all @vue/reactivity members', () => {
+  expect(vueReactivity.watch).toBe(veact.baseWatch)
   expect(
-    Object.keys(vueReactivity).every((key) => {
-      const targetMember = veact[key]
-      return targetMember && vueReactivity[key] === targetMember
-    }),
+    Object.keys(vueReactivity)
+      .filter((key) => key !== 'watch')
+      .every((key) => {
+        const targetMember = (veact as any)[key]
+        return targetMember && (vueReactivity as any)[key] === targetMember
+      }),
   ).toBeTruthy()
 })
 

@@ -4,7 +4,7 @@
  */
 
 import { useState as useReactState, useRef as useReactRef, useCallback as useReactCallback } from 'react'
-import { effectScope } from '@vue/reactivity'
+import { effectScope as vueEffectScope } from '@vue/reactivity'
 import { ArgumentTypes } from './_utils'
 
 /**
@@ -16,9 +16,9 @@ import { ArgumentTypes } from './_utils'
  * @param detached - Can be used to create a "detached" effect scope.
  * @see {@link https://vuejs.org/api/reactivity-advanced.html#effectscope Vue `effectScope()`}
  */
-export function useEffectScope(...args: ArgumentTypes<typeof effectScope>) {
+export function useEffectScope(...args: ArgumentTypes<typeof vueEffectScope>) {
   const hasRun = useReactRef(false)
-  const [scope] = useReactState(() => effectScope(...args))
+  const [scope] = useReactState(() => vueEffectScope(...args))
   const originalRunRef = useReactRef(scope.run)
   const runFn = useReactCallback(<T>(fn: () => T) => {
     if (!hasRun.current) {

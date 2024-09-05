@@ -17,11 +17,14 @@ export const Component: React.FC = () => {
     <div>
       <mark>renderCount: {renderCount}</mark>
       <pre>shallowReadonlyObject = {JSON.stringify(shallowReadonlyObject, null, 2)}</pre>
+      {/* @ts-ignore */}
       <button onClick={() => shallowReadonlyObject.data++}>shallowReadonlyObject.data++</button>
       <button onClick={() => shallowReadonlyObject.nested.data++}>shallowReadonlyObject.nested.data++</button>
       <hr />
       <pre>readonlyObject = {JSON.stringify(readonlyObject, null, 2)}</pre>
+      {/* @ts-ignore */}
       <button onClick={() => readonlyObject.data++}>readonlyObject.data++</button>
+      {/* @ts-ignore */}
       <button onClick={() => readonlyObject.nested.data++}>readonlyObject.nested.data++</button>
     </div>
   )

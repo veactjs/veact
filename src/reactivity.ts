@@ -3,7 +3,7 @@
  * @author Surmon <https://github.com/surmon-china>
  */
 
-import { useWatch } from './watch/watch'
+import { useWatch } from './watch'
 import { useForceUpdate } from './_utils'
 
 /**

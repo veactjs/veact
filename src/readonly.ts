@@ -4,10 +4,10 @@
  */
 
 import { useState as useReactState } from 'react'
-import { useWatch } from './watch/watch'
-import { useForceUpdate } from './_utils'
-import { readonly as vReadonly, shallowReadonly as vShallowReadonly } from '@vue/reactivity'
+import { readonly as vueReadonly, shallowReadonly as vueShallowReadonly } from '@vue/reactivity'
 import type { DeepReadonly, UnwrapNestedRefs } from '@vue/reactivity'
+import { useWatch } from './watch'
+import { useForceUpdate } from './_utils'
 
 /**
  * Takes an object (reactive or plain) or a ref and returns a readonly proxy to
@@ -38,7 +38,7 @@ import type { DeepReadonly, UnwrapNestedRefs } from '@vue/reactivity'
  * ```
  */
 export function useReadonly<T extends object>(target: T): DeepReadonly<UnwrapNestedRefs<T>> {
-  const [value] = useReactState(() => vReadonly(target))
+  const [value] = useReactState(() => vueReadonly(target))
   const forceUpdate = useForceUpdate()
   useWatch(value, forceUpdate)
   return value
@@ -78,7 +78,7 @@ export function useReadonly<T extends object>(target: T): DeepReadonly<UnwrapNes
  * ```
  */
 export function useShallowReadonly<T extends object>(target: T): Readonly<T> {
-  const [value] = useReactState(() => vShallowReadonly(target))
+  const [value] = useReactState(() => vueShallowReadonly(target))
   const forceUpdate = useForceUpdate()
   useWatch(value, forceUpdate)
   return value

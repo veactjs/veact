@@ -16,5 +16,5 @@
     "noImplicitReturns": true,
     "outDir": "dist"
   },
-  "exclude": ["node_modules", "dist", "dev", "tests"]
+  "exclude": ["node_modules", "dist"]
 }

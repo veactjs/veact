@@ -4,10 +4,10 @@
  */
 
 import { useState as useReactState } from 'react'
-import { useWatch } from './watch/watch'
-import { useForceUpdate } from './_utils'
-import { reactive as vReactive, shallowReactive as vShallowReactive } from '@vue/reactivity'
+import { reactive as vueReactive, shallowReactive as vueShallowReactive } from '@vue/reactivity'
 import type { Reactive, ShallowReactive } from '@vue/reactivity'
+import { useWatch } from './watch'
+import { useForceUpdate } from './_utils'
 
 /**
  * Returns a reactive proxy of the object.
@@ -26,7 +26,7 @@ import type { Reactive, ShallowReactive } from '@vue/reactivity'
  */
 export function useReactive<T extends object>(target: T): Reactive<T>
 export function useReactive(target: object) {
-  const [value] = useReactState(() => vReactive(target))
+  const [value] = useReactState(() => vueReactive(target))
   const forceUpdate = useForceUpdate()
   useWatch(value, forceUpdate)
   return value
@@ -63,7 +63,7 @@ export function useReactive(target: object) {
  * ```
  */
 export function useShallowReactive<T extends object>(target: T): ShallowReactive<T> {
-  const [value] = useReactState(() => vShallowReactive(target))
+  const [value] = useReactState(() => vueShallowReactive(target))
   const forceUpdate = useForceUpdate()
   useWatch(value, forceUpdate)
   return value
