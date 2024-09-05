@@ -1,6 +1,16 @@
 import { test, expect } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
-import { ref, reactive, useRef, watch, EffectScope, onUpdated, useEffectScope, onScopeDispose } from '../src'
+import {
+  ref,
+  reactive,
+  useRef,
+  watch,
+  EffectScope,
+  onUpdated,
+  useEffectScope,
+  getCurrentScope,
+  onScopeDispose,
+} from '../src'
 
 test('<useEffectScope>', () => {
   let renderCount = 0
@@ -27,6 +37,10 @@ test('<useEffectScope>', () => {
       onScopeDispose(() => {
         scopeDisposed = true
       })
+
+      const currentScope = getCurrentScope()
+      expect(currentScope).toBeDefined()
+      expect(getCurrentScope()).toBe(currentScope)
     })
 
     return {

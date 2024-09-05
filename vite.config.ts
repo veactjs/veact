@@ -23,7 +23,7 @@ export default defineConfig({
   // https://github.com/qmhc/vite-plugin-dts
   plugins: [viteReact(), viteDts({ rollupTypes: true })],
   test: {
-    environment: 'jsdom',
+    environment: 'happy-dom',
     coverage: {
       include: ['src/**/*'],
     },
