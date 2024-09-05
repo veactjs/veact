@@ -21,6 +21,7 @@ All notable changes to this project will be documented in this file.
 - Replaced `jest` with `vitest`.
 - Replaced `libundler` with `vite` as the bundler.
 - Upgraded `React` and `react-dom` peerDependencies versions.
+- Upgraded `@vue/reactivity` dependency to `>=3.5`.
 - Upgraded ESLint to v9.
 - Updated unit test scripts.
 
