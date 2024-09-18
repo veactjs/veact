@@ -51,7 +51,8 @@
   },
   "dependencies": {
     "@vue/reactivity": ">=3.5",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "ts-pystyle": "^1.4.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.x",

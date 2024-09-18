@@ -1,8 +1,8 @@
 ﻿import { ReactElement } from "react";
 import { useOnce } from "../useOnce";
-import { isReactive, isRef } from "@vue/reactivity";
+import { isReactive, isRef, reactive } from "@vue/reactivity";
 import React from "react";
-import { useReactivity } from "../reactivity";
+import { useReactivity, useReactivityObject } from "../reactivity";
 import { mapValues } from "lodash";
 
 export interface ISetupComponent<P, T> {
@@ -18,13 +18,14 @@ export function SetupComponentRenderer(p: {
     let t = p.target.setup(p.props);
     return t;
   });
-  let t = mapValues(store, (v, k) => {
-    if (isRef(v) || isReactive(v)) {
-      return useReactivity(() => v);
-    } else return v;
-  });
+  const tt=useReactivityObject(store)
+  // let t = mapValues(store, (v, k) => {
+  //   if (isRef(v) || isReactive(v)) {
+  //     return useReactivity(() => v);
+  //   } else return v;
+  // });
   const RenderComp = p.target.render;
-  return <RenderComp {...t} />;
+  return <RenderComp {...tt} />;
 }
 
 /**
