@@ -1,9 +1,10 @@
+
 /**
  * @module veact.watch
  * @author Surmon <https://github.com/surmon-china>
  */
 
-import { useState as useReactState } from 'react'
+import { useCallback, useEffect, useState as useReactState, useRef } from 'react'
 import { watch as vueWatch } from '@vue/reactivity'
 import type {
   ReactiveMarker,
@@ -12,7 +13,7 @@ import type {
   WatchSource,
   WatchHandle,
 } from '@vue/reactivity'
-import { onBeforeUnmount } from './lifecycle'
+import { onBeforeUnmount, onMounted } from './lifecycle'
 import { logger } from './_logger'
 
 // changelog: https://github.com/vuejs/core/blob/main/CHANGELOG.md
@@ -32,10 +33,10 @@ export type MultiWatchSources = (WatchSource<unknown> | object)[]
 type MaybeUndefined<T, I> = I extends true ? T | undefined : T
 type MapSources<T, Immediate> = {
   [K in keyof T]: T[K] extends WatchSource<infer V>
-    ? MaybeUndefined<V, Immediate>
-    : T[K] extends object
-      ? MaybeUndefined<T[K], Immediate>
-      : never
+  ? MaybeUndefined<V, Immediate>
+  : T[K] extends object
+  ? MaybeUndefined<T[K], Immediate>
+  : never
 }
 
 /**
@@ -97,6 +98,20 @@ export function watch<T = any, Immediate extends Readonly<boolean> = false>(
     scheduler: (job) => job(),
   })
 }
+/**
+ * 保证函数只执行一次 后每次返回同样的结果
+ * @param func 执行一次并返回结果的函数
+ * @returns
+ */
+export function useOnce<T>(func:()=>T){
+  const first=useRef(true)
+  const data=useRef<any>(undefined)
+  if(first.current){
+      first.current=false;
+      data.current=func();
+  }
+  return data.current as T;
+}
 
 /**
  * Watches one or more reactive data sources and invokes a callback function when the sources change.
@@ -114,8 +129,36 @@ export function watch<T = any, Immediate extends Readonly<boolean> = false>(
  * })
  * ```
  */
-export const useWatch: typeof watch = (source: any, callback: any, options = {}) => {
-  const [watchHandle] = useReactState(() => watch(source as any, callback, options))
-  onBeforeUnmount(() => watchHandle.stop())
-  return watchHandle
+export const useWatch = (source: any, callback: any, options = {}) => {
+  const watcher = useRef<WatchHandle>()
+  //执行watch
+  const cancelWatch = useCallback(() => {
+    if (watcher.current) {
+      watcher.current();
+      watcher.current = undefined;
+    }
+  }, [])
+  const doWatch = useCallback(() => {
+    if (watcher.current) cancelWatch();
+
+    watcher.current = watch(source as any, () => {
+      console.log("触发更新")
+      callback()
+    }, options)
+
+  }, [])
+  onMounted(() => {
+    console.log("执行监听")
+    doWatch();
+  })
+  onBeforeUnmount(() => {
+    console.log("取消监听")
+    cancelWatch();
+  })
+  useOnce(()=>{
+    console.log("初始监听")
+    doWatch();
+  })
+
+  return watcher;
 }
