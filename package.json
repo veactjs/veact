@@ -50,12 +50,14 @@
     "react-dom": "^16.8.0 || ^17 || ^18 || ^19"
   },
   "dependencies": {
-    "@vue/reactivity": ">=3.5"
+    "@vue/reactivity": ">=3.5",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@eslint/js": "^9.x",
     "@testing-library/react": "^16.x",
     "@types/eslint": "^9.x",
+    "@types/lodash": "^4",
     "@types/react": "^18.x",
     "@types/react-dom": "^18.x",
     "@vitejs/plugin-react": "^4.x",

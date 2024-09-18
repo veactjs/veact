@@ -5,6 +5,7 @@
 
 // redirect all APIs from @vue/reactivity
 export * from '@vue/reactivity'
+export * from "./setup/setupComponents"
 export { watch as baseWatch } from '@vue/reactivity'
 
 // lifecycle hooks
