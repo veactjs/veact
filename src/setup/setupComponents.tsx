@@ -18,14 +18,14 @@ export function SetupComponentRenderer(p: {
     let t = p.target.setup(p.props);
     return t;
   });
-  const tt=useReactivityObject(store)
+  const t=useReactivityObject(()=>store)
   // let t = mapValues(store, (v, k) => {
   //   if (isRef(v) || isReactive(v)) {
   //     return useReactivity(() => v);
   //   } else return v;
   // });
   const RenderComp = p.target.render;
-  return <RenderComp {...tt} />;
+  return <RenderComp {...t} />;
 }
 
 /**
