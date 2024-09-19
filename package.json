@@ -1,6 +1,6 @@
 {
   "name": "veact",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Mutable state enhancer library for React by @vue/reactivity",
   "keywords": [
     "React",

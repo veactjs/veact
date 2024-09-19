@@ -1,5 +1,5 @@
 (function(R,E){typeof exports=="object"&&typeof module<"u"?E(exports,require("react"),require("@vue/reactivity")):typeof define=="function"&&define.amd?define(["exports","react","@vue/reactivity"],E):(R=typeof globalThis<"u"?globalThis:R||self,E(R.veact={},R.React,R.VueReactivity))})(this,function(R,E,D){"use strict";/*!
- * veact v1.0.0
+ * veact v1.1.0
  * https://github.com/veactjs/veact
  *
  * Includes @vue/reactivity
@@ -8,7 +8,7 @@
  * (c) 2021-present Surmon and Veact contributors.
  * Released under the MIT License.
  *
- * Date: 2024-09-19T04:18:04.894Z
+ * Date: 2024-09-19T04:33:55.899Z
  */function Be(e){E.useEffect(()=>{e()},[])}function Re(e){E.useEffect(()=>()=>{e()},[])}function Et(e){const r=E.useRef(!1);E.useEffect(()=>{r.current?e():r.current=!0})}const Ee="veact",Ve={...console,log(...e){console.log(`[${Ee}]`,...e)},warn(...e){console.warn(`[${Ee}]`,...e)},error(...e){console.error(`[${Ee}]`,...e)}};function Le(e){const r=E.useRef(!0),t=E.useRef(void 0);return r.current&&(r.current=!1,t.current=e()),t.current}class Ot{watch(r,t,a={}){return D.watch(r,t,{...a,onWarn:Ve.warn,scheduler:s=>s()})}}const ye=new Ot,N=(e,r,t={})=>{const a=E.useRef(),s=E.useCallback(()=>{a.current&&(a.current(),a.current=void 0)},[]),i=E.useCallback(()=>{a.current&&s(),a.current=ye.watch(e,(...o)=>{console.log("触发更新"),r(...o)},t)},[]);return Be(()=>{console.log("执行监听"),i()}),Re(()=>{console.log("取消监听"),s()}),Le(()=>{console.log("初始监听"),i()}),a};var B=typeof globalThis<"u"?globalThis:typeof window<"u"?window:typeof global<"u"?global:typeof self<"u"?self:{},Oe={exports:{}},ue={};/**
  * @license React
  * react-jsx-runtime.production.min.js

@@ -3,7 +3,7 @@ import { watch as ur, isRef as Xr, isReactive as Zr, ref as Qr, shallowRef as et
 export * from "@vue/reactivity";
 import { watch as pn } from "@vue/reactivity";
 /*!
- * veact v1.0.0
+ * veact v1.1.0
  * https://github.com/veactjs/veact
  *
  * Includes @vue/reactivity
@@ -12,7 +12,7 @@ import { watch as pn } from "@vue/reactivity";
  * (c) 2021-present Surmon and Veact contributors.
  * Released under the MIT License.
  *
- * Date: 2024-09-19T04:18:04.894Z
+ * Date: 2024-09-19T04:33:55.899Z
  */
 function ut(r) {
   Fe(() => {
