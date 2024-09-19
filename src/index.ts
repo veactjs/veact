@@ -30,7 +30,7 @@ export { watcherInstance, useWatch } from './watch'
 //兼容处理
 const watch=watcherInstance.watch.bind(watcherInstance);
 export {watch};
-
+export * from "./observer"
 export type { WatchOptions, MultiWatchSources } from './watch'
 
 // watchEffect and hooks

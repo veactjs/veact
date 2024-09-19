@@ -1,7 +1,7 @@
 import or, { useEffect as Fe, useRef as ie, useCallback as be, useReducer as Gr, useMemo as Hr, useState as L } from "react";
 import { watch as ur, isRef as Xr, isReactive as Zr, ref as Qr, shallowRef as et, customRef as rt, reactive as tt, shallowReactive as nt, readonly as it, shallowReadonly as at, computed as st, effectScope as ot } from "@vue/reactivity";
 export * from "@vue/reactivity";
-import { watch as yn } from "@vue/reactivity";
+import { watch as pn } from "@vue/reactivity";
 /*!
  * veact v1.0.0
  * https://github.com/veactjs/veact
@@ -12,7 +12,7 @@ import { watch as yn } from "@vue/reactivity";
  * (c) 2021-present Surmon and Veact contributors.
  * Released under the MIT License.
  *
- * Date: 2024-09-19T02:48:01.418Z
+ * Date: 2024-09-19T04:18:04.894Z
  */
 function ut(r) {
   Fe(() => {
@@ -24,7 +24,7 @@ function fr(r) {
     r();
   }, []);
 }
-function Xt(r) {
+function Zt(r) {
   const t = ie(!1);
   Fe(() => {
     t.current ? r() : t.current = !0;
@@ -1724,7 +1724,7 @@ function Lt(r) {
   };
 }
 c.cached = Lt;
-function Zt(r) {
+function Qt(r) {
   const t = N();
   return V(() => r(), t, { deep: !0 }), r();
 }
@@ -1746,80 +1746,84 @@ function Jt(r) {
   const t = cr(() => r.target.setup(r.props)), e = Nt(() => t), i = r.target.render;
   return /* @__PURE__ */ hr.jsx(i, { ...e });
 }
-function Qt(r) {
+function en(r) {
   return (t) => /* @__PURE__ */ hr.jsx(Jt, { target: r, props: t });
 }
-function en(r) {
+function rn(r) {
   const [t] = L(() => Qr(r)), e = N();
   return V(t, e, { deep: !0 }), t;
 }
-function rn(r) {
+function tn(r) {
   const [t] = L(() => et(r)), e = N();
   return V(t, e), t;
 }
-function tn(r) {
+function nn(r) {
   const [t] = L(() => rt(r)), e = N();
   return V(t, e), t;
 }
-function nn(r) {
+function an(r) {
   const [t] = L(() => tt(r)), e = N();
   return V(t, e), t;
 }
-function an(r) {
+function sn(r) {
   const [t] = L(() => nt(r)), e = N();
   return V(t, e), t;
 }
-function sn(r) {
+function on(r) {
   const [t] = L(() => it(r)), e = N();
   return V(t, e), t;
 }
-function on(r) {
+function un(r) {
   const [t] = L(() => at(r)), e = N();
   return V(t, e), t;
 }
-function un(r, t) {
+function Kt(r, t) {
   const [e] = L(() => st(r, t)), i = N();
   return V(e, i), e;
 }
-function Kt(r, t = {}) {
+function fn({ children: r }) {
+  return Kt(() => r()).value;
+}
+function Gt(r, t = {}) {
   return ur(r, null, {
     ...t,
     onWarn: lr.warn,
     scheduler: (e) => e()
   });
 }
-const fn = (r, t) => {
-  const [e] = L(() => Kt(r, t));
+const ln = (r, t) => {
+  const [e] = L(() => Gt(r, t));
   return fr(() => e.stop()), e;
 };
-function ln(...r) {
+function cn(...r) {
   const t = ie(!1), [e] = L(() => ot(...r)), i = ie(e.run), s = be((a) => {
     if (!t.current)
       return t.current = !0, i.current.bind(e)(a);
   }, []);
   return e.run = s, e;
 }
-const cn = Ce.watch.bind(Ce);
+const hn = Ce.watch.bind(Ce);
 export {
+  fn as Observer,
   Jt as SetupComponentRenderer,
-  yn as baseWatch,
-  Qt as defineSetupComponent,
+  pn as baseWatch,
+  en as defineSetupComponent,
   fr as onBeforeUnmount,
   ut as onMounted,
-  Xt as onUpdated,
-  un as useComputed,
-  tn as useCustomRef,
-  ln as useEffectScope,
-  nn as useReactive,
-  Zt as useReactivity,
-  sn as useReadonly,
-  en as useRef,
-  an as useShallowReactive,
-  on as useShallowReadonly,
-  rn as useShallowRef,
+  Zt as onUpdated,
+  Kt as useComputed,
+  nn as useCustomRef,
+  cn as useEffectScope,
+  an as useReactive,
+  Qt as useReactivity,
+  on as useReadonly,
+  rn as useRef,
+  sn as useShallowReactive,
+  un as useShallowReadonly,
+  tn as useShallowRef,
   V as useWatch,
-  fn as useWatchEffect,
-  cn as watch,
-  Kt as watchEffect,
+  ln as useWatchEffect,
+  hn as watch,
+  Gt as watchEffect,
   Ce as watcherInstance
 };

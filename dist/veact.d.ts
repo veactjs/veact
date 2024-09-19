@@ -54,6 +54,14 @@ declare type MaybeUndefined<T, I> = I extends true ? T | undefined : T;
 export declare type MultiWatchSources = (WatchSource<unknown> | object)[];
 
 /**
+ * 对应mobx的组件
+ * 函数中不能调用hook
+ */
+export declare function Observer({ children }: {
+    children: () => ReactElement;
+}): ReactElement<any, string | default_2.JSXElementConstructor<any>>;
+
+/**
  * The function is called right before the component is unmounted.
  *
  * @param fn
