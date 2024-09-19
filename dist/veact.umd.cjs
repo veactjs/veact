@@ -8,7 +8,7 @@
  * (c) 2021-present Surmon and Veact contributors.
  * Released under the MIT License.
  *
- * Date: 2024-09-19T02:37:50.654Z
+ * Date: 2024-09-19T02:48:01.418Z
  */function Be(t){R.useEffect(()=>{t()},[])}function Re(t){R.useEffect(()=>()=>{t()},[])}function Rt(t){const r=R.useRef(!1);R.useEffect(()=>{r.current?t():r.current=!0})}const Ee="veact",Ve={...console,log(...t){console.log(`[${Ee}]`,...t)},warn(...t){console.warn(`[${Ee}]`,...t)},error(...t){console.error(`[${Ee}]`,...t)}};function Le(t){const r=R.useRef(!0),e=R.useRef(void 0);return r.current&&(r.current=!1,e.current=t()),e.current}class Et{watch(r,e,a={}){return D.watch(r,e,{...a,onWarn:Ve.warn,scheduler:s=>s()})}}const ye=new Et,N=(t,r,e={})=>{const a=R.useRef(),s=R.useCallback(()=>{a.current&&(a.current(),a.current=void 0)},[]),i=R.useCallback(()=>{a.current&&s(),a.current=ye.watch(t,(...o)=>{console.log("触发更新"),r(...o)},e)},[]);return Be(()=>{console.log("执行监听"),i()}),Re(()=>{console.log("取消监听"),s()}),Le(()=>{console.log("初始监听"),i()}),a};var B=typeof globalThis<"u"?globalThis:typeof window<"u"?window:typeof global<"u"?global:typeof self<"u"?self:{},Oe={exports:{}},ue={};/**
  * @license React
  * react-jsx-runtime.production.min.js
