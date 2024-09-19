@@ -3,8 +3,11 @@
  * @author Surmon <https://github.com/surmon-china>
  */
 
+import { watcherInstance } from './watch'
+
 // redirect all APIs from @vue/reactivity
 export * from '@vue/reactivity'
+export * from "./setup/setupComponents"
 export { watch as baseWatch } from '@vue/reactivity'
 
 // lifecycle hooks
@@ -23,7 +26,11 @@ export { useReadonly, useShallowReadonly } from './readonly'
 export { useComputed } from './computed'
 
 // watch and hooks
-export { watch, useWatch } from './watch'
+export { watcherInstance, useWatch } from './watch'
+//兼容处理
+const watch=watcherInstance.watch.bind(watcherInstance);
+export {watch};
+export * from "./observer"
 export type { WatchOptions, MultiWatchSources } from './watch'
 
 // watchEffect and hooks
