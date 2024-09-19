@@ -4,7 +4,7 @@
  * @author Surmon <https://github.com/surmon-china>
  */
 
-import { useCallback, useEffect, useState as useReactState, useRef } from 'react'
+import { MutableRefObject, useCallback, useEffect, useState as useReactState, useRef } from 'react'
 import { watch as vueWatch } from '@vue/reactivity'
 import type {
   ReactiveMarker,
@@ -56,49 +56,53 @@ type MapSources<T, Immediate> = {
  * })
  * ```
  */
+export class WatchHelper<R = WatchHandle> {
 
-// overload: single source + cb
-export function watch<T, Immediate extends Readonly<boolean> = false>(
-  source: WatchSource<T>,
-  callback: WatchCallback<T, MaybeUndefined<T, Immediate>>,
-  options?: WatchOptions<Immediate>,
-): WatchHandle
+  //type tricky
+  // overload: single source + cb
+  watch<T, Immediate extends Readonly<boolean> = false, >(
+    source: WatchSource<T>,
+    callback: WatchCallback<T, MaybeUndefined<T, Immediate>>,
+    options?: WatchOptions<Immediate>,
+  ): R
 
-// overload: reactive array or tuple of multiple sources + cb
-export function watch<T extends Readonly<MultiWatchSources>, Immediate extends Readonly<boolean> = false>(
-  sources: readonly [...T] | T,
-  callback: [T] extends [ReactiveMarker]
-    ? WatchCallback<T, MaybeUndefined<T, Immediate>>
-    : WatchCallback<MapSources<T, false>, MapSources<T, Immediate>>,
-  options?: WatchOptions<Immediate>,
-): WatchHandle
+  // overload: reactive array or tuple of multiple sources + cb
+  watch<T extends Readonly<MultiWatchSources>, Immediate extends Readonly<boolean> = false>(
+    sources: readonly [...T] | T,
+    callback: [T] extends [ReactiveMarker]
+      ? WatchCallback<T, MaybeUndefined<T, Immediate>>
+      : WatchCallback<MapSources<T, false>, MapSources<T, Immediate>>,
+    options?: WatchOptions<Immediate>,
+  ): R
 
-// overload: array of multiple sources + cb
-export function watch<T extends MultiWatchSources, Immediate extends Readonly<boolean> = false>(
-  sources: [...T],
-  callback: WatchCallback<MapSources<T, false>, MapSources<T, Immediate>>,
-  options?: WatchOptions<Immediate>,
-): WatchHandle
+  // overload: array of multiple sources + cb
+  watch<T extends MultiWatchSources, Immediate extends Readonly<boolean> = false>(
+    sources: [...T],
+    callback: WatchCallback<MapSources<T, false>, MapSources<T, Immediate>>,
+    options?: WatchOptions<Immediate>,
+  ): R
 
-// overload: watching reactive object w/ cb
-export function watch<T extends object, Immediate extends Readonly<boolean> = false>(
-  source: T,
-  callback: WatchCallback<T, MaybeUndefined<T, Immediate>>,
-  options?: WatchOptions<Immediate>,
-): WatchHandle
+  // overload: watching reactive object w/ cb
+  watch<T extends object, Immediate extends Readonly<boolean> = false>(
+    source: T,
+    callback: WatchCallback<T, MaybeUndefined<T, Immediate>>,
+    options?: WatchOptions<Immediate>,
+  ): R
 
-// implementation
-export function watch<T = any, Immediate extends Readonly<boolean> = false>(
-  source: T | WatchSource<T>,
-  callback: WatchCallback<T>,
-  options: WatchOptions<Immediate> = {},
-): WatchHandle {
-  return vueWatch(source as any, callback, {
-    ...options,
-    onWarn: logger.warn,
-    scheduler: (job) => job(),
-  })
+  // implementation
+  watch<T = any, Immediate extends Readonly<boolean> = false>(
+    source: T | WatchSource<T>,
+    callback: WatchCallback<T>,
+    options: WatchOptions<Immediate> = {},
+  ): R {
+    return vueWatch(source as any, callback, {
+      ...options,
+      onWarn: logger.warn,
+      scheduler: (job) => job(),
+    }) as any
+  }
 }
+
 /**
  * Watches one or more reactive data sources and invokes a callback function when the sources change.
  *
@@ -115,7 +119,9 @@ export function watch<T = any, Immediate extends Readonly<boolean> = false>(
  * })
  * ```
  */
-export const useWatch = (source: any, callback: any, options = {}) => {
+
+export const watcherInstance=new WatchHelper();
+export const useWatch: (InstanceType<typeof WatchHelper<MutableRefObject<WatchHandle|undefined>>>)["watch"] = (source: any, callback: any, options = {}) => {
   const watcher = useRef<WatchHandle>()
   //执行watch
   const cancelWatch = useCallback(() => {
@@ -127,7 +133,7 @@ export const useWatch = (source: any, callback: any, options = {}) => {
   const doWatch = useCallback(() => {
     if (watcher.current) cancelWatch();
 
-    watcher.current = watch(source as any, () => {
+    watcher.current = watcherInstance.watch(source as any, () => {
       console.log("触发更新")
       callback()
     }, options)
@@ -141,10 +147,12 @@ export const useWatch = (source: any, callback: any, options = {}) => {
     console.log("取消监听")
     cancelWatch();
   })
-  useOnce(()=>{
+  useOnce(() => {
     console.log("初始监听")
     doWatch();
   })
 
   return watcher;
 }
+
+

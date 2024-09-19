@@ -329,23 +329,7 @@ export declare function useShallowRef<T>(value: T): Ref extends T ? (T extends R
 
 export declare function useShallowRef<T = any>(): ShallowRef<T | undefined>;
 
-/**
- * Watches one or more reactive data sources and invokes a callback function when the sources change.
- *
- * @param source - The watcher's source.
- * @param callback - This function will be called when the source is changed.
- * @param options - An optional options object that does not support the `flush` option compared to Vue (3.5.0).
- * @see {@link https://vuejs.org/api/reactivity-core.html#watch Vue `watch()`}
- *
- * @example
- * ```js
- * const count = useRef(0)
- * useWatch(count, (count, prevCount) => {
- *  // ...
- * })
- * ```
- */
-export declare const useWatch: (source: any, callback: any, options?: {}) => MutableRefObject<WatchHandle | undefined>;
+export declare const useWatch: (InstanceType<typeof WatchHelper<MutableRefObject<WatchHandle | undefined>>>)["watch"];
 
 /**
  * Runs a function immediately while reactively tracking its dependencies and re-runs it whenever the dependencies are changed.
@@ -366,29 +350,12 @@ export declare const useWatch: (source: any, callback: any, options?: {}) => Mut
  */
 export declare const useWatchEffect: typeof watchEffect;
 
-/**
- * Watches one or more reactive data sources and invokes a callback function when the sources change.
- *
- * @param source - The watcher's source.
- * @param callback - This function will be called when the source is changed.
- * @param options - An optional options object that does not support the `flush` option compared to Vue (3.5.0).
- * @see {@link https://vuejs.org/api/reactivity-core.html#watch Vue `watch()`}
- *
- * @example
- * ```js
- * const count = ref(0)
- * watch(count, (count, prevCount) => {
- *  // ...
- * })
- * ```
- */
-export declare function watch<T, Immediate extends Readonly<boolean> = false>(source: WatchSource<T>, callback: WatchCallback<T, MaybeUndefined<T, Immediate>>, options?: WatchOptions<Immediate>): WatchHandle;
-
-export declare function watch<T extends Readonly<MultiWatchSources>, Immediate extends Readonly<boolean> = false>(sources: readonly [...T] | T, callback: [T] extends [ReactiveMarker] ? WatchCallback<T, MaybeUndefined<T, Immediate>> : WatchCallback<MapSources<T, false>, MapSources<T, Immediate>>, options?: WatchOptions<Immediate>): WatchHandle;
-
-export declare function watch<T extends MultiWatchSources, Immediate extends Readonly<boolean> = false>(sources: [...T], callback: WatchCallback<MapSources<T, false>, MapSources<T, Immediate>>, options?: WatchOptions<Immediate>): WatchHandle;
-
-export declare function watch<T extends object, Immediate extends Readonly<boolean> = false>(source: T, callback: WatchCallback<T, MaybeUndefined<T, Immediate>>, options?: WatchOptions<Immediate>): WatchHandle;
+export declare const watch: {
+    <T, Immediate extends Readonly<boolean> = false>(source: WatchSource<T>, callback: WatchCallback<T, Immediate extends true ? T | undefined : T>, options?: WatchOptions<Immediate> | undefined): WatchHandle;
+    <T extends Readonly<MultiWatchSources>, Immediate extends Readonly<boolean> = false>(sources: T | readonly [...T], callback: [T] extends [ReactiveMarker] ? WatchCallback<T, Immediate extends true ? T | undefined : T> : WatchCallback<    { [K in keyof T]: T[K] extends WatchSource<infer V> ? V : T[K] extends object ? T[K] : never; }, { [K_1 in keyof T]: T[K_1] extends WatchSource<infer V> ? Immediate extends true ? V | undefined : V : T[K_1] extends object ? Immediate extends true ? T[K_1] | undefined : T[K_1] : never; }>, options?: WatchOptions<Immediate> | undefined): WatchHandle;
+    <T extends MultiWatchSources, Immediate extends Readonly<boolean> = false>(sources: [...T], callback: WatchCallback<    { [K in keyof T]: T[K] extends WatchSource<infer V> ? V : T[K] extends object ? T[K] : never; }, { [K_1 in keyof T]: T[K_1] extends WatchSource<infer V> ? Immediate extends true ? V | undefined : V : T[K_1] extends object ? Immediate extends true ? T[K_1] | undefined : T[K_1] : never; }>, options?: WatchOptions<Immediate> | undefined): WatchHandle;
+    <T extends object, Immediate extends Readonly<boolean> = false>(source: T, callback: WatchCallback<T, Immediate extends true ? T | undefined : T>, options?: WatchOptions<Immediate> | undefined): WatchHandle;
+};
 
 /**
  * Runs a function immediately while reactively tracking its dependencies and re-runs it whenever the dependencies are changed.
@@ -410,6 +377,47 @@ export declare function watch<T extends object, Immediate extends Readonly<boole
 export declare function watchEffect(effectFn: WatchEffect, options?: WatchEffectOptions): WatchHandle;
 
 export declare type WatchEffectOptions = DebuggerOptions;
+
+/**
+ * Watches one or more reactive data sources and invokes a callback function when the sources change.
+ *
+ * @param source - The watcher's source.
+ * @param callback - This function will be called when the source is changed.
+ * @param options - An optional options object that does not support the `flush` option compared to Vue (3.5.0).
+ * @see {@link https://vuejs.org/api/reactivity-core.html#watch Vue `watch()`}
+ *
+ * @example
+ * ```js
+ * const count = useRef(0)
+ * useWatch(count, (count, prevCount) => {
+ *  // ...
+ * })
+ * ```
+ */
+export declare const watcherInstance: WatchHelper<WatchHandle>;
+
+/**
+ * Watches one or more reactive data sources and invokes a callback function when the sources change.
+ *
+ * @param source - The watcher's source.
+ * @param callback - This function will be called when the source is changed.
+ * @param options - An optional options object that does not support the `flush` option compared to Vue (3.5.0).
+ * @see {@link https://vuejs.org/api/reactivity-core.html#watch Vue `watch()`}
+ *
+ * @example
+ * ```js
+ * const count = ref(0)
+ * watch(count, (count, prevCount) => {
+ *  // ...
+ * })
+ * ```
+ */
+declare class WatchHelper<R = WatchHandle> {
+    watch<T, Immediate extends Readonly<boolean> = false>(source: WatchSource<T>, callback: WatchCallback<T, MaybeUndefined<T, Immediate>>, options?: WatchOptions<Immediate>): R;
+    watch<T extends Readonly<MultiWatchSources>, Immediate extends Readonly<boolean> = false>(sources: readonly [...T] | T, callback: [T] extends [ReactiveMarker] ? WatchCallback<T, MaybeUndefined<T, Immediate>> : WatchCallback<MapSources<T, false>, MapSources<T, Immediate>>, options?: WatchOptions<Immediate>): R;
+    watch<T extends MultiWatchSources, Immediate extends Readonly<boolean> = false>(sources: [...T], callback: WatchCallback<MapSources<T, false>, MapSources<T, Immediate>>, options?: WatchOptions<Immediate>): R;
+    watch<T extends object, Immediate extends Readonly<boolean> = false>(source: T, callback: WatchCallback<T, MaybeUndefined<T, Immediate>>, options?: WatchOptions<Immediate>): R;
+}
 
 export declare interface WatchOptions<Immediate = boolean> extends DebuggerOptions {
     immediate?: Immediate;
