@@ -121,6 +121,7 @@ export class WatchHelper<R = WatchHandle> {
  */
 
 export const watcherInstance=new WatchHelper();
+
 export const useWatch: (InstanceType<typeof WatchHelper<MutableRefObject<WatchHandle|undefined>>>)["watch"] = (source: any, callback: any, options = {}) => {
   const watcher = useRef<WatchHandle>()
   //执行watch
@@ -133,9 +134,9 @@ export const useWatch: (InstanceType<typeof WatchHelper<MutableRefObject<WatchHa
   const doWatch = useCallback(() => {
     if (watcher.current) cancelWatch();
 
-    watcher.current = watcherInstance.watch(source as any, () => {
+    watcher.current = watcherInstance.watch(source as any, (...args) => {
       console.log("触发更新")
-      callback()
+      callback(...args)
     }, options)
 
   }, [])
@@ -154,5 +155,4 @@ export const useWatch: (InstanceType<typeof WatchHelper<MutableRefObject<WatchHa
 
   return watcher;
 }
-
 

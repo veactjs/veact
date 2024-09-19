@@ -12,7 +12,7 @@ import { watch as yn } from "@vue/reactivity";
  * (c) 2021-present Surmon and Veact contributors.
  * Released under the MIT License.
  *
- * Date: 2024-09-19T02:18:20.013Z
+ * Date: 2024-09-19T02:31:02.029Z
  */
 function ut(r) {
   Fe(() => {
@@ -60,8 +60,8 @@ const Ce = new ft(), V = (r, t, e = {}) => {
   const i = ie(), s = be(() => {
     i.current && (i.current(), i.current = void 0);
   }, []), a = be(() => {
-    i.current && s(), i.current = Ce.watch(r, () => {
-      console.log("触发更新"), t();
+    i.current && s(), i.current = Ce.watch(r, (...o) => {
+      console.log("触发更新"), t(...o);
     }, e);
   }, []);
   return ut(() => {
