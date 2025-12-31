@@ -27,7 +27,7 @@ Veact embodies what I believe is the **“best of both worlds”**—a powerful,
 #### Who is using this library 🔥
 
 - [**veact-use**](https://github.com/veactjs/veact-use) Veact hooks.
-- [**surmon.admin**](https://github.com/surmon-china/surmon.admin) A CMS admin client for [surmon.me](https://github.com/surmon-china/surmon.me) blog.
+- [**surmon.me.admin**](https://github.com/surmon-china/surmon.me.admin) A CMS admin client for [surmon.me](https://github.com/surmon-china/surmon.me) blog.
 - ...
 
 #### API & examples
