@@ -32,15 +32,25 @@ Veact embodies what I believe is the **“best of both worlds”**—a powerful,
 
 #### API & examples
 
-- [API List](#api)
-- [Example: Lifecycle](#lifecycle)
-- [Example: Ref](#ref)
-- [Example: ShallowRef](#shallowref)
-- [Example: Reactive](#reactive)
-- [Example: Computed](#computed)
-- [Example: Watch](#watch)
-- [Example: EffectScope](#effectscope)
-- [Example: Reactivity](#reactivity)
+- [Veact](#veact)
+      - [Why Veact?](#why-veact)
+      - [Who is using this library 🔥](#who-is-using-this-library-)
+      - [API \& examples](#api--examples)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Lifecycle](#lifecycle)
+    - [Ref](#ref)
+    - [ShallowRef](#shallowref)
+    - [Reactive](#reactive)
+    - [Computed](#computed)
+    - [Watch](#watch)
+    - [EffectScope](#effectscope)
+    - [Reactivity](#reactivity)
+  - [S](#s)
+  - [API](#api)
+  - [Development](#development)
+  - [Changelog](#changelog)
+  - [License](#license)
 
 ## Installation
 
@@ -276,7 +286,40 @@ export const Component: React.FC = () => {
   )
 }
 ```
+## SetupComponents
+```tsx
 
+//define a setupComponent
+const Temp = defineSetupComponent({
+  setup(p: { prop1: string }) {
+    const a = ref(1);
+    const data = reactive({
+      count: 1,
+      add() {
+        this.count++;
+      },
+    });
+    return {
+      a,
+      data,
+      p: p.prop1,
+    };
+  },
+  render(ctx) {
+    return (
+      <div>
+        <h1>{ctx.p}</h1>
+        <h1>{ctx.data.count}</h1>
+        <h2>{ctx.a.value}</h2>
+        <Button onClick={() => ctx.a.value++}>测试Ref</Button>
+        <Button type="primary" onClick={() => ctx.data.add()}>
+          测试按钮
+        </Button>
+      </div>
+    );
+  },
+});
+```
 ## API
 
 All APIs listed here are implemented and provided by Veact. For additional exported types, please refer to [`index.ts`](/src/index.ts).

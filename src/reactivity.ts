@@ -5,6 +5,10 @@
 
 import { useWatch } from './watch'
 import { useForceUpdate } from './_utils'
+import { useCallback, useMemo } from 'react'
+import { mapValues } from 'lodash'
+import { list } from 'ts-pystyle'
+import { isReactive, isRef } from '@vue/reactivity'
 
 /**
  * Converts some of the 'raw Vue' data, which is not already wrapped in a hook,
@@ -38,5 +42,32 @@ export function useReactivity<T = any>(getter: () => T): T {
   const forceUpdate = useForceUpdate()
   // deep > watch > traverse(getter()) > ref | array | set | map | plain object(reactive) > force update
   useWatch(() => getter(), forceUpdate, { deep: true })
+  return getter()
+}
+
+function objToArr(obj:any){
+  function *inner(){
+    for(let  k in obj){
+      yield obj[k]
+    }
+  }
+  return list(inner());
+}
+/**
+ * 执行对象内监听 过滤非ref reactive
+ * 针对构造setupComponent支持
+ * @param getter
+ * @returns
+ */
+export function useReactivityObject<T extends object=any>(getter: () => T): T {
+  const forceUpdate = useForceUpdate()
+  // deep > watch > traverse(getter()) > ref | array | set | map | plain object(reactive) > force update
+  const f=useCallback(()=>{
+    const t=getter();
+    const ar=objToArr(t).filter(v=>isRef(v)||isReactive(v))
+    return ar;
+  },[getter])
+  const v=useMemo(()=>f(),[f])
+  useWatch(() => v, forceUpdate, { deep: true })
   return getter()
 }
